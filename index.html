@@ -2199,11 +2199,9 @@
 
         // Load saved language preference
         window.addEventListener('DOMContentLoaded', () => {
-            const saved = localStorage.getItem('preferredLanguage');
-            if (saved && saved !== 'en') {
-                document.getElementById('languageSelect').value = saved;
-                changeLanguage(saved);
-            }
+            const saved = localStorage.getItem('preferredLanguage') || 'en';
+            document.getElementById('languageSelect').value = saved;
+            changeLanguage(saved);
         });
 
         // Navbar scroll effect
