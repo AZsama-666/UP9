@@ -78,23 +78,7 @@
             animation: drift 20s ease-in-out infinite;
         }
 
-        /* Logo watermark background */
-        .bg-animated::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-15deg);
-            width: 600px;
-            height: 600px;
-            background-image: url('UP9_logo_transparent_2048.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            opacity: 0.025;
-            pointer-events: none;
-            z-index: 1;
-        }
+        /* Logo watermark background - 已移除以保持页面简洁 */
 
         @keyframes drift {
             0%, 100% { transform: translate(0, 0); }
@@ -160,12 +144,24 @@
             filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.6)) 
                     drop-shadow(0 0 20px rgba(170, 47, 255, 0.4));
             transition: all 0.3s ease;
-            animation: subtleRotate 8s ease-in-out infinite;
+            animation: logoRotate 6s linear infinite;
         }
 
-        @keyframes subtleRotate {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(5deg); }
+        @keyframes logoRotate {
+            0% { 
+                transform: rotate(0deg);
+                filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.6)) 
+                        drop-shadow(0 0 20px rgba(170, 47, 255, 0.4));
+            }
+            50% {
+                filter: drop-shadow(0 0 16px rgba(0, 240, 255, 0.8)) 
+                        drop-shadow(0 0 25px rgba(170, 47, 255, 0.6));
+            }
+            100% { 
+                transform: rotate(360deg);
+                filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.6)) 
+                        drop-shadow(0 0 20px rgba(170, 47, 255, 0.4));
+            }
         }
 
         .logo:hover .logo-icon {
@@ -979,9 +975,7 @@
     <div class="bg-animated"></div>
     <div class="grid-bg"></div>
     
-    <!-- Logo watermarks for additional visual depth -->
-    <div style="position: fixed; top: 15%; right: 10%; width: 400px; height: 400px; background-image: url('logo-icon.png'); background-size: contain; background-repeat: no-repeat; opacity: 0.02; transform: rotate(18deg); pointer-events: none; z-index: 0;"></div>
-    <div style="position: fixed; bottom: 20%; left: 8%; width: 350px; height: 350px; background-image: url('logo-icon.png'); background-size: contain; background-repeat: no-repeat; opacity: 0.015; transform: rotate(-12deg); pointer-events: none; z-index: 0;"></div>
+    <!-- Logo watermarks - 已移除以保持页面简洁 -->
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -1005,9 +999,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <!-- 主要LOGO展示 -->
+            <!-- 主要LOGO展示 - 已移除图片，保留文字 -->
             <div class="hero-logo-container">
-                <img src="UP9_logo_transparent_2048.png" alt="UP9 3D Logo" class="hero-logo-image">
                 <div class="hero-logo-text">UP9</div>
             </div>
             <span class="hero-tag">🚀 WEB3 BUILDER COMMUNITY</span>
