@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UP9 - Web3 Builder Community | Next-Gen Decentralized Innovation Platform</title>
+    <meta name="description" content="UP9 is a leading Web3 builder community connecting the future of decentralization">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00f0ff;
+            --secondary: #aa2fff;
+            --accent: #ff00ff;
+            --success: #00ff88;
+            --warning: #ffaa00;
+            
+            --bg-dark: #0a0e27;
+            --bg-darker: #050810;
+            --bg-card: #0f1433;
+            --bg-card-hover: #151a3f;
+            
+            --text-primary: #ffffff;
+            --text-secondary: #b4b4c8;
+            --text-muted: #6b7280;
+            
+            --gradient-primary: linear-gradient(135deg, #00f0ff 0%, #00d9ff 25%, #aa2fff 75%, #ff00ff 100%);
+            --gradient-secondary: linear-gradient(135deg, #aa2fff 0%, #ff00ff 100%);
+            --gradient-success: linear-gradient(135deg, #00ff88 0%, #00f0ff 100%);
+            
+            --glow-primary: 0 0 20px rgba(0, 240, 255, 0.5);
+            --glow-secondary: 0 0 20px rgba(170, 47, 255, 0.5);
+            --glow-accent: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-darker);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--bg-darker);
+        }
+
+        .bg-animated::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 240, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(170, 47, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+            animation: drift 20s ease-in-out infinite;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(100px, -100px); }
+            66% { transform: translate(-100px, 100px); }
+        }
+
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 14, 39, 0.95);
+            border-bottom-color: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 240, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo-icon {
+            height: 45px;
+            width: 45px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.6)) 
+                    drop-shadow(0 0 20px rgba(170, 47, 255, 0.4));
+            transition: all 0.3s ease;
+            animation: logoRotate 6s linear infinite;
+        }
+
+        @keyframes logoRotate {
+            0% { 
+                transform: rotate(0deg);
+                filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.6)) 
+                        drop-shadow(0 0 20px rgba(170, 47, 255, 0.4));
+            }
+            50% {
+                filter: drop-shadow(0 0 16px rgba(0, 240, 255, 0.8)) 
+                        drop-shadow(0 0 25px rgba(170, 47, 255, 0.6));
+            }
+            100% { 
+                transform: rotate(360deg);
+                filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.6)) 
+                        drop-shadow(0 0 20px rgba(170, 47, 255, 0.4));
+            }
+        }
+
+        .logo:hover .logo-icon {
+            filter: drop-shadow(0 0 20px rgba(0, 240, 255, 1)) 
+                    drop-shadow(0 0 35px rgba(255, 0, 255, 0.8));
+            transform: scale(1.1) translateY(-3px);
+            animation: none;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #00f0ff 0%, #00d9ff 30%, #aa2fff 70%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.1em;
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.3));
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+            text-shadow: var(--glow-primary);
+        }
+
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gradient-primary);
+            color: var(--bg-dark);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            box-shadow: var(--glow-primary);
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.8);
+        }
+
+        /* Language Selector */
+        .lang-selector {
+            position: relative;
+        }
+
+        .lang-selector select {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 8px;
+            color: var(--primary);
+            padding: 0.5rem 2rem 0.5rem 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            appearance: none;
+            outline: none;
+        }
+
+        .lang-selector select:hover {
+            background: rgba(0, 240, 255, 0.2);
+            border-color: var(--primary);
+            box-shadow: var(--glow-primary);
+        }
+
+        .lang-selector::after {
+            content: '▼';
+            position: absolute;
+            right: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 0.6rem;
+            pointer-events: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 12rem 2rem 8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(170, 47, 255, 0.3) 0%, rgba(0, 240, 255, 0.2) 50%, transparent 70%);
+            transform: translate(-50%, -50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 3rem;
+            animation: fadeInScale 1s ease 0s both;
+        }
+
+        .hero-logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 6rem;
+            font-weight: 900;
+            letter-spacing: 0.15em;
+            background: linear-gradient(90deg, #00f0ff 0%, #00d9ff 30%, #aa2fff 70%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.4));
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.8s ease;
+            box-shadow: var(--glow-primary);
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+            background: linear-gradient(135deg, #ffffff 0%, #00f0ff 40%, #aa2fff 80%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.8s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 1.2rem 3rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: 2px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--bg-dark);
+            box-shadow: var(--glow-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.8), 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border-color: var(--primary);
+            box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 240, 255, 0.1);
+            box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.2), 0 0 20px rgba(0, 240, 255, 0.5);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 240, 255, 0.3);
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Section */
+        .section {
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(170, 47, 255, 0.1);
+            border: 1px solid var(--secondary);
+            border-radius: 50px;
+            color: var(--secondary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, #00f0ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-description {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, rgba(0, 240, 255, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 240, 255, 0.3);
+            background: var(--bg-card-hover);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .icon-cyber {
+            background: rgba(0, 240, 255, 0.1);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: var(--glow-primary);
+        }
+
+        .icon-purple {
+            background: rgba(170, 47, 255, 0.1);
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            box-shadow: var(--glow-secondary);
+        }
+
+        .icon-pink {
+            background: rgba(255, 0, 255, 0.1);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            box-shadow: var(--glow-accent);
+        }
+
+        .card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-tag {
+            display: inline-block;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Feature List */
+        .feature-list {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(0, 240, 255, 0.03);
+            border-left: 2px solid var(--primary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(0, 240, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--gradient-primary);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-dark);
+            font-size: 0.75rem;
+            flex-shrink: 0;
+            box-shadow: var(--glow-primary);
+        }
+
+        .feature-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .feature-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(170, 47, 255, 0.4) 0%, rgba(0, 240, 255, 0.2) 50%, transparent 70%);
+            transform: translate(-50%, -50%);
+            animation: pulse 5s ease-in-out infinite;
+        }
+
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, #00f0ff 40%, #aa2fff 80%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            border-top: 1px solid rgba(0, 240, 255, 0.1);
+            padding: 5rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand {
+            max-width: 400px;
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .footer-description {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: var(--glow-primary);
+        }
+
+        .footer-column h4 {
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(0, 240, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-logo-text {
+                font-size: 4rem;
+            }
+
+            .logo-icon {
+                height: 38px;
+                width: 38px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Scroll reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animated"></div>
+    <div class="grid-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="UP9_logo_transparent_2048.png" alt="UP9 Icon" class="logo-icon">
+                <span class="logo-text">UP9</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#about" data-i18n="nav.about">ABOUT</a></li>
+                <li><a href="#method" data-i18n="nav.method">METHOD</a></li>
+                <li><a href="#outcomes" data-i18n="nav.outcomes">OUTCOMES</a></li>
+                <li><a href="#events" data-i18n="nav.events">EVENTS</a></li>
+                <li><a href="#resources" data-i18n="nav.resources">RESOURCES</a></li>
+                <li><a href="#partners" data-i18n="nav.partners">PARTNERS</a></li>
+                <li><a href="#apply" class="nav-cta" data-i18n="nav.join">JOIN US</a></li>
+                <li class="lang-selector">
+                    <select id="languageSelect" onchange="changeLanguage(this.value)">
+                        <option value="en">EN</option>
+                        <option value="zh-CN">简体中文</option>
+                        <option value="zh-TW">繁體中文</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-logo-container">
+                <div class="hero-logo-text">UP9</div>
+            </div>
+            <span class="hero-tag" data-i18n="hero.tag">🚀 WEB3 BUILDER COMMUNITY</span>
+            <h1 data-i18n="hero.title">Web3 Builder Collaborative Network</h1>
+            <p class="subtitle" data-i18n="hero.subtitle">Connecting Insight, Build, and Capital</p>
+            <p class="description" data-i18n="hero.description">
+                Through our three pillars - Insight, Build, and Capital - we connect research, technology, and funding to support Web3 projects from 0 to 1
+            </p>
+            <div class="hero-buttons">
+                <a href="#apply" class="btn btn-primary" data-i18n="hero.apply">APPLY NOW</a>
+                <a href="#contact" class="btn btn-secondary" data-i18n="hero.contact">SCHEDULE A CALL</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats reveal">
+        <div class="stats-container">
+            <div class="stat-card">
+                <span class="stat-number">50+</span>
+                <span class="stat-label" data-i18n="stats.members">Active Members</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">20+</span>
+                <span class="stat-label" data-i18n="stats.projects">Successful Projects</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">$15M+</span>
+                <span class="stat-label" data-i18n="stats.funding">Total Funding Raised</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">300%</span>
+                <span class="stat-label" data-i18n="stats.growth">Average Growth</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Method Section -->
+    <section id="method" class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">METHODOLOGY</span>
+                <h2 class="section-title" data-i18n="method.title">Three Pillars Empowering Web3</h2>
+                <p class="section-description" data-i18n="method.description">
+                    A systematic methodology providing end-to-end support from insight to implementation for Web3 projects
+                </p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card reveal">
+                    <div class="card-icon icon-cyber">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="card-title" data-i18n="method.insight.title">Insight</h3>
+                    <p class="card-description" data-i18n="method.insight.desc">
+                        Deep research on market trends, technology evolution, and user needs, providing data-driven decision support
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <div class="feature-text"><strong data-i18n="method.insight.feature1.title">Market Research</strong> <span data-i18n="method.insight.feature1.desc">- Track analysis, competitor research, user profiling</span></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <div class="feature-text"><strong data-i18n="method.insight.feature2.title">On-chain Analysis</strong> <span data-i18n="method.insight.feature2.desc">- Dune dashboards, wallet behavior, fund flow</span></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <div class="feature-text"><strong data-i18n="method.insight.feature3.title">Trend Forecasting</strong> <span data-i18n="method.insight.feature3.desc">- Tech evolution, policy changes, market opportunities</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card reveal">
+                    <div class="card-icon icon-purple">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="card-title" data-i18n="method.build.title">Build</h3>
+                    <p class="card-description" data-i18n="method.build.desc">
+                        From MVP to product iteration, providing full-cycle support for technical implementation, growth experiments, and community operations
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <div class="feature-text"><strong data-i18n="method.build.feature1.title">Technical Development</strong> <span data-i18n="method.build.feature1.desc">- Smart contracts, frontend, backend, infrastructure</span></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <div class="feature-text"><strong data-i18n="method.build.feature2.title">Product Design</strong> <span data-i18n="method.build.feature2.desc">- UX, interaction design, prototype validation</span></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <div class="feature-text"><strong data-i18n="method.build.feature3.title">Growth Experiments</strong> <span data-i18n="method.build.feature3.desc">- A/B testing, data analytics, iterative optimization</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card reveal">
+                    <div class="card-icon icon-pink">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="card-title" data-i18n="method.capital.title">Capital</h3>
+                    <p class="card-description" data-i18n="method.capital.desc">
+                        Connecting quality projects with investors, assisting with fundraising strategy, pitch deck optimization, and roadshow preparation
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <div class="feature-text"><strong data-i18n="method.capital.feature1.title">Fundraising Strategy</strong> <span data-i18n="method.capital.feature1.desc">- Valuation design, funding rhythm, investor selection</span></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <div class="feature-text"><strong data-i18n="method.capital.feature2.title">Pitch Deck Optimization</strong> <span data-i18n="method.capital.feature2.desc">- Business plan writing and refinement</span></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <div class="feature-text"><strong data-i18n="method.capital.feature3.title">Investor Connections</strong> <span data-i18n="method.capital.feature3.desc">- VCs, family offices, strategic investors</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcomes Section -->
+    <section id="outcomes" class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">SUCCESS STORIES</span>
+                <h2 class="section-title" data-i18n="outcomes.title">Real Projects, Verifiable Results</h2>
+                <p class="section-description" data-i18n="outcomes.description">
+                    We help Web3 builders achieve breakthroughs with professional capabilities, backed by on-chain data
+                </p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card reveal">
+                    <span class="card-tag">BUILD + CAPITAL</span>
+                    <h3 class="card-title" data-i18n="outcomes.case1.title">DeFi Protocol TVL Growth 300%</h3>
+                    <p class="card-description" data-i18n="outcomes.case1.desc">
+                        Through systematic growth experiments and community operations, achieved TVL from $10M to $40M in 3 months. Assisted with tokenomics design and liquidity incentive programs.
+                    </p>
+                    <div class="feature-list" style="margin-top: 1.5rem;">
+                        <div class="feature-item">
+                            <div class="feature-icon" style="background: var(--gradient-success);">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <div class="feature-text" style="color: var(--success);">
+                                <strong data-i18n="outcomes.case1.result">Result:</strong><span data-i18n="outcomes.case1.result_desc"> TVL $10M → $40M, 5x user growth</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card reveal">
+                    <span class="card-tag">INSIGHT + CAPITAL</span>
+                    <h3 class="card-title" data-i18n="outcomes.case2.title">NFT Project Raised $2M Successfully</h3>
+                    <p class="card-description" data-i18n="outcomes.case2.desc">
+                        Completed market research, competitor analysis, pitch deck optimization, and investor connections, successfully closed seed round. Reached out to 12 institutions, secured investment from top-tier VCs.
+                    </p>
+                    <div class="feature-list" style="margin-top: 1.5rem;">
+                        <div class="feature-item">
+                            <div class="feature-icon" style="background: var(--gradient-success);">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="feature-text" style="color: var(--success);">
+                                <strong data-i18n="outcomes.case2.result">Result:</strong><span data-i18n="outcomes.case2.result_desc"> Seed round $2M, valuation $15M</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card reveal">
+                    <span class="card-tag">INSIGHT + BUILD</span>
+                    <h3 class="card-title" data-i18n="outcomes.case3.title">L2 Solution Technical Breakthrough</h3>
+                    <p class="card-description" data-i18n="outcomes.case3.desc">
+                        Deep technical research and prototype validation, helping the team find optimal technical solution. Completed zkEVM feasibility analysis and PoC development.
+                    </p>
+                    <div class="feature-list" style="margin-top: 1.5rem;">
+                        <div class="feature-item">
+                            <div class="feature-icon" style="background: var(--gradient-success);">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="feature-text" style="color: var(--success);">
+                                <strong data-i18n="outcomes.case3.result">Result:</strong><span data-i18n="outcomes.case3.result_desc"> PoC validated successfully, 10x TPS improvement</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="apply" class="cta-section">
+        <div class="cta-content">
+            <h2 data-i18n="cta.title">Ready to Get Started?</h2>
+            <p data-i18n="cta.description">
+                Join UP9 and build groundbreaking projects with 50+ talented Web3 builders in the decentralized future
+            </p>
+            <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#" class="btn btn-primary" data-i18n="cta.apply">APPLY NOW</a>
+                <a href="#contact" class="btn btn-secondary" data-i18n="cta.contact">CONTACT US</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">UP9</span>
+                    <p class="footer-description" data-i18n="footer.description">
+                        Professional builder community for Web3 research, development, and capital connections. Connecting insight, technology, and capital through systematic methodology to help Web3 projects achieve breakthroughs.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/up9community" class="social-link" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://t.me/up9community" class="social-link" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://discord.gg/up9" class="social-link" target="_blank">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://github.com/up9" class="social-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about" data-i18n="footer.about">About Us</a></li>
+                        <li><a href="#method" data-i18n="footer.method">Methodology</a></li>
+                        <li><a href="#outcomes" data-i18n="footer.outcomes">Case Studies</a></li>
+                        <li><a href="#events" data-i18n="footer.events">Events</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#resources" data-i18n="footer.resources">Templates</a></li>
+                        <li><a href="#partners" data-i18n="footer.partners">Partners</a></li>
+                        <li><a href="#legal" data-i18n="footer.faq">FAQ</a></li>
+                        <li><a href="#contact" data-i18n="footer.contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@up9.community">contact@up9.community</a></li>
+                        <li><a href="https://t.me/up9community">@up9community</a></li>
+                        <li data-i18n="footer.hours">Weekdays 9:00-18:00 UTC+8</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; 2025 UP9. Building the future of Web3. | 
+                    <a href="#legal" data-i18n="footer.privacy">Privacy Policy</a> | 
+                    <a href="#legal" data-i18n="footer.terms">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language translations
+        const translations = {
+            'en': {
+                'nav.about': 'ABOUT',
+                'nav.method': 'METHOD',
+                'nav.outcomes': 'OUTCOMES',
+                'nav.events': 'EVENTS',
+                'nav.resources': 'RESOURCES',
+                'nav.partners': 'PARTNERS',
+                'nav.join': 'JOIN US',
+                'hero.tag': '🚀 WEB3 BUILDER COMMUNITY',
+                'hero.title': 'Web3 Builder Collaborative Network',
+                'hero.subtitle': 'Connecting Insight, Build, and Capital',
+                'hero.description': 'Through our three pillars - Insight, Build, and Capital - we connect research, technology, and funding to support Web3 projects from 0 to 1',
+                'hero.apply': 'APPLY NOW',
+                'hero.contact': 'SCHEDULE A CALL',
+                'stats.members': 'Active Members',
+                'stats.projects': 'Successful Projects',
+                'stats.funding': 'Total Funding Raised',
+                'stats.growth': 'Average Growth',
+                'method.title': 'Three Pillars Empowering Web3',
+                'method.description': 'A systematic methodology providing end-to-end support from insight to implementation for Web3 projects',
+                'method.insight.title': 'Insight',
+                'method.insight.desc': 'Deep research on market trends, technology evolution, and user needs, providing data-driven decision support',
+                'method.insight.feature1.title': 'Market Research',
+                'method.insight.feature1.desc': ' - Track analysis, competitor research, user profiling',
+                'method.insight.feature2.title': 'On-chain Analysis',
+                'method.insight.feature2.desc': ' - Dune dashboards, wallet behavior, fund flow',
+                'method.insight.feature3.title': 'Trend Forecasting',
+                'method.insight.feature3.desc': ' - Tech evolution, policy changes, market opportunities',
+                'method.build.title': 'Build',
+                'method.build.desc': 'From MVP to product iteration, providing full-cycle support for technical implementation, growth experiments, and community operations',
+                'method.build.feature1.title': 'Technical Development',
+                'method.build.feature1.desc': ' - Smart contracts, frontend, backend, infrastructure',
+                'method.build.feature2.title': 'Product Design',
+                'method.build.feature2.desc': ' - UX, interaction design, prototype validation',
+                'method.build.feature3.title': 'Growth Experiments',
+                'method.build.feature3.desc': ' - A/B testing, data analytics, iterative optimization',
+                'method.capital.title': 'Capital',
+                'method.capital.desc': 'Connecting quality projects with investors, assisting with fundraising strategy, pitch deck optimization, and roadshow preparation',
+                'method.capital.feature1.title': 'Fundraising Strategy',
+                'method.capital.feature1.desc': ' - Valuation design, funding rhythm, investor selection',
+                'method.capital.feature2.title': 'Pitch Deck Optimization',
+                'method.capital.feature2.desc': ' - Business plan writing and refinement',
+                'method.capital.feature3.title': 'Investor Connections',
+                'method.capital.feature3.desc': ' - VCs, family offices, strategic investors',
+                'outcomes.title': 'Real Projects, Verifiable Results',
+                'outcomes.description': 'We help Web3 builders achieve breakthroughs with professional capabilities, backed by on-chain data',
+                'outcomes.case1.title': 'DeFi Protocol TVL Growth 300%',
+                'outcomes.case1.desc': 'Through systematic growth experiments and community operations, achieved TVL from $10M to $40M in 3 months. Assisted with tokenomics design and liquidity incentive programs.',
+                'outcomes.case1.result': 'Result:',
+                'outcomes.case1.result_desc': ' TVL $10M → $40M, 5x user growth',
+                'outcomes.case2.title': 'NFT Project Raised $2M Successfully',
+                'outcomes.case2.desc': 'Completed market research, competitor analysis, pitch deck optimization, and investor connections, successfully closed seed round. Reached out to 12 institutions, secured investment from top-tier VCs.',
+                'outcomes.case2.result': 'Result:',
+                'outcomes.case2.result_desc': ' Seed round $2M, valuation $15M',
+                'outcomes.case3.title': 'L2 Solution Technical Breakthrough',
+                'outcomes.case3.desc': 'Deep technical research and prototype validation, helping the team find optimal technical solution. Completed zkEVM feasibility analysis and PoC development.',
+                'outcomes.case3.result': 'Result:',
+                'outcomes.case3.result_desc': ' PoC validated successfully, 10x TPS improvement',
+                'cta.title': 'Ready to Get Started?',
+                'cta.description': 'Join UP9 and build groundbreaking projects with 50+ talented Web3 builders in the decentralized future',
+                'cta.apply': 'APPLY NOW',
+                'cta.contact': 'CONTACT US',
+                'footer.description': 'Professional builder community for Web3 research, development, and capital connections. Connecting insight, technology, and capital through systematic methodology to help Web3 projects achieve breakthroughs.',
+                'footer.about': 'About Us',
+                'footer.method': 'Methodology',
+                'footer.outcomes': 'Case Studies',
+                'footer.events': 'Events',
+                'footer.resources': 'Templates',
+                'footer.partners': 'Partners',
+                'footer.faq': 'FAQ',
+                'footer.contact': 'Contact Us',
+                'footer.hours': 'Weekdays 9:00-18:00 UTC+8',
+                'footer.privacy': 'Privacy Policy',
+                'footer.terms': 'Terms of Service'
+            },
+            'zh-CN': {
+                'nav.about': '关于我们',
+                'nav.method': '方法论',
+                'nav.outcomes': '成果',
+                'nav.events': '活动',
+                'nav.resources': '资源',
+                'nav.partners': '伙伴',
+                'nav.join': '加入我们',
+                'hero.tag': '🚀 WEB3 建设者社群',
+                'hero.title': 'Web3 建设者协作网络',
+                'hero.subtitle': '连接洞察、构建与资本',
+                'hero.description': '通过 Insight、Build、Capital 三大支柱，连接研究、技术与资本，助力 Web3 项目从 0 到 1 的完整旅程',
+                'hero.apply': '申请加入',
+                'hero.contact': '预约沟通',
+                'stats.members': '活跃成员',
+                'stats.projects': '成功项目',
+                'stats.funding': '融资总额',
+                'stats.growth': '平均增长',
+                'method.title': '三大支柱赋能 Web3',
+                'method.description': '系统化的方法论体系，为 Web3 项目提供从洞察到落地的全流程支持',
+                'method.insight.title': 'Insight 洞察',
+                'method.insight.desc': '深度研究市场趋势、技术演进和用户需求，为项目提供数据驱动的决策支持',
+                'method.insight.feature1.title': '市场研究',
+                'method.insight.feature1.desc': ' - 赛道分析、竞品调研、用户画像',
+                'method.insight.feature2.title': '链上分析',
+                'method.insight.feature2.desc': ' - Dune 看板、钱包行为、资金流向',
+                'method.insight.feature3.title': '趋势预判',
+                'method.insight.feature3.desc': ' - 技术演进、政策变化、市场机会',
+                'method.build.title': 'Build 构建',
+                'method.build.desc': '从 MVP 到产品迭代，提供技术实现、增长实验和社区运营的全流程支持',
+                'method.build.feature1.title': '技术开发',
+                'method.build.feature1.desc': ' - 智能合约、前端、后端、基础设施',
+                'method.build.feature2.title': '产品设计',
+                'method.build.feature2.desc': ' - 用户体验、交互设计、原型验证',
+                'method.build.feature3.title': '增长实验',
+                'method.build.feature3.desc': ' - A/B 测试、数据分析、迭代优化',
+                'method.capital.title': 'Capital 资本',
+                'method.capital.desc': '连接优质项目与投资机构，协助完成融资策略、BP 优化和路演准备',
+                'method.capital.feature1.title': '融资策略',
+                'method.capital.feature1.desc': ' - 估值设计、融资节奏、投资人选择',
+                'method.capital.feature2.title': 'BP 优化',
+                'method.capital.feature2.desc': ' - 商业计划书撰写与打磨',
+                'method.capital.feature3.title': '投资人对接',
+                'method.capital.feature3.desc': ' - VC、家族办公室、战略投资者',
+                'outcomes.title': '真实项目，可验证成果',
+                'outcomes.description': '我们用专业能力帮助 Web3 建设者实现突破，每个成果都有链上数据支持',
+                'outcomes.case1.title': 'DeFi 协议 TVL 增长 300%',
+                'outcomes.case1.desc': '通过系统化增长实验和社区运营，3 个月内实现 TVL 从 $10M 到 $40M。协助完成代币经济学设计和流动性激励方案。',
+                'outcomes.case1.result': '成果：',
+                'outcomes.case1.result_desc': ' TVL $10M → $40M，用户增长 5x',
+                'outcomes.case2.title': 'NFT 项目成功融资 $2M',
+                'outcomes.case2.desc': '完成市场研究、竞品分析、BP 优化和投资人对接，成功完成种子轮融资。对接 12 家机构，最终获得顶级 VC 投资。',
+                'outcomes.case2.result': '成果：',
+                'outcomes.case2.result_desc': ' 种子轮 $2M，估值 $15M',
+                'outcomes.case3.title': 'L2 解决方案技术突破',
+                'outcomes.case3.desc': '深度技术研究与原型验证，帮助团队找到最优技术方案。完成 zkEVM 可行性分析和 PoC 开发。',
+                'outcomes.case3.result': '成果：',
+                'outcomes.case3.result_desc': ' PoC 验证成功，TPS 提升 10x',
+                'cta.title': '准备好开始了吗？',
+                'cta.description': '加入 UP9，与 50+ 优秀的 Web3 建设者一起，在去中心化的未来中创造突破性项目',
+                'cta.apply': '立即申请',
+                'cta.contact': '联系我们',
+                'footer.description': 'Web3 研究、构建和资本对接的专业建设者社群。通过系统化方法论，连接洞察、技术与资本，助力 Web3 项目实现突破。',
+                'footer.about': '关于我们',
+                'footer.method': '方法论',
+                'footer.outcomes': '成果案例',
+                'footer.events': '活动路演',
+                'footer.resources': '模板资源',
+                'footer.partners': '伙伴合作',
+                'footer.faq': 'FAQ',
+                'footer.contact': '联系我们',
+                'footer.hours': '工作日 9:00-18:00 UTC+8',
+                'footer.privacy': '隐私政策',
+                'footer.terms': '使用条款'
+            },
+            'zh-TW': {
+                'nav.about': '關於我們',
+                'nav.method': '方法論',
+                'nav.outcomes': '成果',
+                'nav.events': '活動',
+                'nav.resources': '資源',
+                'nav.partners': '夥伴',
+                'nav.join': '加入我們',
+                'hero.tag': '🚀 WEB3 建設者社群',
+                'hero.title': 'Web3 建設者協作網絡',
+                'hero.subtitle': '連接洞察、構建與資本',
+                'hero.description': '通過 Insight、Build、Capital 三大支柱，連接研究、技術與資本，助力 Web3 項目從 0 到 1 的完整旅程',
+                'hero.apply': '申請加入',
+                'hero.contact': '預約溝通',
+                'stats.members': '活躍成員',
+                'stats.projects': '成功項目',
+                'stats.funding': '融資總額',
+                'stats.growth': '平均增長',
+                'method.title': '三大支柱賦能 Web3',
+                'method.description': '系統化的方法論體系，為 Web3 項目提供從洞察到落地的全流程支持',
+                'method.insight.title': 'Insight 洞察',
+                'method.insight.desc': '深度研究市場趨勢、技術演進和用戶需求，為項目提供數據驅動的決策支持',
+                'method.insight.feature1.title': '市場研究',
+                'method.insight.feature1.desc': ' - 賽道分析、競品調研、用戶畫像',
+                'method.insight.feature2.title': '鏈上分析',
+                'method.insight.feature2.desc': ' - Dune 看板、錢包行為、資金流向',
+                'method.insight.feature3.title': '趨勢預判',
+                'method.insight.feature3.desc': ' - 技術演進、政策變化、市場機會',
+                'method.build.title': 'Build 構建',
+                'method.build.desc': '從 MVP 到產品迭代，提供技術實現、增長實驗和社區運營的全流程支持',
+                'method.build.feature1.title': '技術開發',
+                'method.build.feature1.desc': ' - 智能合約、前端、後端、基礎設施',
+                'method.build.feature2.title': '產品設計',
+                'method.build.feature2.desc': ' - 用戶體驗、交互設計、原型驗證',
+                'method.build.feature3.title': '增長實驗',
+                'method.build.feature3.desc': ' - A/B 測試、數據分析、迭代優化',
+                'method.capital.title': 'Capital 資本',
+                'method.capital.desc': '連接優質項目與投資機構，協助完成融資策略、BP 優化和路演準備',
+                'method.capital.feature1.title': '融資策略',
+                'method.capital.feature1.desc': ' - 估值設計、融資節奏、投資人選擇',
+                'method.capital.feature2.title': 'BP 優化',
+                'method.capital.feature2.desc': ' - 商業計劃書撰寫與打磨',
+                'method.capital.feature3.title': '投資人對接',
+                'method.capital.feature3.desc': ' - VC、家族辦公室、戰略投資者',
+                'outcomes.title': '真實項目，可驗證成果',
+                'outcomes.description': '我們用專業能力幫助 Web3 建設者實現突破，每個成果都有鏈上數據支持',
+                'outcomes.case1.title': 'DeFi 協議 TVL 增長 300%',
+                'outcomes.case1.desc': '通過系統化增長實驗和社區運營，3 個月內實現 TVL 從 $10M 到 $40M。協助完成代幣經濟學設計和流動性激勵方案。',
+                'outcomes.case1.result': '成果：',
+                'outcomes.case1.result_desc': ' TVL $10M → $40M，用戶增長 5x',
+                'outcomes.case2.title': 'NFT 項目成功融資 $2M',
+                'outcomes.case2.desc': '完成市場研究、競品分析、BP 優化和投資人對接，成功完成種子輪融資。對接 12 家機構，最終獲得頂級 VC 投資。',
+                'outcomes.case2.result': '成果：',
+                'outcomes.case2.result_desc': ' 種子輪 $2M，估值 $15M',
+                'outcomes.case3.title': 'L2 解決方案技術突破',
+                'outcomes.case3.desc': '深度技術研究與原型驗證，幫助團隊找到最優技術方案。完成 zkEVM 可行性分析和 PoC 開發。',
+                'outcomes.case3.result': '成果：',
+                'outcomes.case3.result_desc': ' PoC 驗證成功，TPS 提升 10x',
+                'cta.title': '準備好開始了嗎？',
+                'cta.description': '加入 UP9，與 50+ 優秀的 Web3 建設者一起，在去中心化的未來中創造突破性項目',
+                'cta.apply': '立即申請',
+                'cta.contact': '聯繫我們',
+                'footer.description': 'Web3 研究、構建和資本對接的專業建設者社群。通過系統化方法論，連接洞察、技術與資本，助力 Web3 項目實現突破。',
+                'footer.about': '關於我們',
+                'footer.method': '方法論',
+                'footer.outcomes': '成果案例',
+                'footer.events': '活動路演',
+                'footer.resources': '模板資源',
+                'footer.partners': '夥伴合作',
+                'footer.faq': 'FAQ',
+                'footer.contact': '聯繫我們',
+                'footer.hours': '工作日 9:00-18:00 UTC+8',
+                'footer.privacy': '隱私政策',
+                'footer.terms': '使用條款'
+            }
+        };
+
+        // Change language function
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang === 'zh-CN' ? 'zh-Hans' : (lang === 'zh-TW' ? 'zh-Hant' : 'en');
+            
+            // Save preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Load saved language preference
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('preferredLanguage');
+            if (saved && saved !== 'en') {
+                document.getElementById('languageSelect').value = saved;
+                changeLanguage(saved);
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const reveals = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        reveals.forEach(reveal => {
+            revealObserver.observe(reveal);
+        });
+
+        // Counter animation for stats
+        const animateCounter = (element, target) => {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + (element.textContent.includes('+') ? '+' : '') + 
+                                         (element.textContent.includes('%') ? '%' : '') +
+                                         (element.textContent.includes('$') ? '' : '');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + (element.textContent.includes('+') ? '+' : '') +
+                                         (element.textContent.includes('%') ? '%' : '');
+                }
+            }, 30);
+        };
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numbers = entry.target.querySelectorAll('.stat-number');
+                    numbers.forEach(num => {
+                        const text = num.textContent;
+                        const value = parseInt(text.replace(/\D/g, ''));
+                        if (value) {
+                            num.textContent = '0';
+                            animateCounter(num, value);
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>
