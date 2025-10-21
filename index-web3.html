@@ -15,9 +15,9 @@
         }
 
         :root {
-            /* Cyber colors */
+            /* Cyber colors - 匹配LOGO渐变 (电蓝/青色 → 洋红/紫红) */
             --primary: #00f0ff;
-            --secondary: #7b2ff7;
+            --secondary: #aa2fff;
             --accent: #ff00ff;
             --success: #00ff88;
             --warning: #ffaa00;
@@ -33,14 +33,14 @@
             --text-secondary: #b4b4c8;
             --text-muted: #6b7280;
             
-            /* Gradients */
-            --gradient-primary: linear-gradient(135deg, #00f0ff 0%, #7b2ff7 100%);
-            --gradient-secondary: linear-gradient(135deg, #7b2ff7 0%, #ff00ff 100%);
+            /* Gradients - 贴近LOGO的青色到洋红色渐变 */
+            --gradient-primary: linear-gradient(135deg, #00f0ff 0%, #00d9ff 25%, #aa2fff 75%, #ff00ff 100%);
+            --gradient-secondary: linear-gradient(135deg, #aa2fff 0%, #ff00ff 100%);
             --gradient-success: linear-gradient(135deg, #00ff88 0%, #00f0ff 100%);
             
             /* Effects */
             --glow-primary: 0 0 20px rgba(0, 240, 255, 0.5);
-            --glow-secondary: 0 0 20px rgba(123, 47, 247, 0.5);
+            --glow-secondary: 0 0 20px rgba(170, 47, 255, 0.5);
             --glow-accent: 0 0 20px rgba(255, 0, 255, 0.5);
         }
 
@@ -72,10 +72,28 @@
             position: absolute;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 20% 50%, rgba(123, 47, 247, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(0, 240, 255, 0.15) 0%, transparent 50%),
+            background: radial-gradient(circle at 20% 50%, rgba(0, 240, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(170, 47, 255, 0.15) 0%, transparent 50%),
                         radial-gradient(circle at 40% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
             animation: drift 20s ease-in-out infinite;
+        }
+
+        /* Logo watermark background */
+        .bg-animated::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            width: 600px;
+            height: 600px;
+            background-image: url('logo-icon.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 1;
         }
 
         @keyframes drift {
@@ -128,16 +146,54 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo-icon {
+            height: 45px;
+            width: 45px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.6)) 
+                    drop-shadow(0 0 20px rgba(170, 47, 255, 0.4));
+            transition: all 0.3s ease;
+            animation: subtleRotate 8s ease-in-out infinite;
+        }
+
+        @keyframes subtleRotate {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .logo:hover .logo-icon {
+            filter: drop-shadow(0 0 20px rgba(0, 240, 255, 1)) 
+                    drop-shadow(0 0 35px rgba(255, 0, 255, 0.8));
+            transform: scale(1.1) translateY(-3px);
+            animation: none;
+        }
+
+        .logo-text {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 900;
-            background: var(--gradient-primary);
+            background: linear-gradient(90deg, #00f0ff 0%, #00d9ff 30%, #aa2fff 70%, #ff00ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: 2px;
-            text-shadow: var(--glow-primary);
-            filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.5));
+            letter-spacing: 0.1em;
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.3));
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+            }
+            50% { 
+                transform: translateY(-10px) rotate(2deg); 
+            }
         }
 
         .nav-menu {
@@ -212,7 +268,7 @@
             left: 50%;
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(123, 47, 247, 0.3) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(170, 47, 255, 0.3) 0%, rgba(0, 240, 255, 0.2) 50%, transparent 70%);
             transform: translate(-50%, -50%);
             animation: pulse 4s ease-in-out infinite;
         }
@@ -227,6 +283,60 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+        }
+
+        /* 主LOGO展示 */
+        .hero-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 3rem;
+            animation: fadeInScale 1s ease 0s both;
+        }
+
+        .hero-logo-image {
+            width: 320px;
+            height: 320px;
+            object-fit: contain;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 50px rgba(0, 240, 255, 0.8)) 
+                    drop-shadow(0 0 100px rgba(170, 47, 255, 0.6))
+                    drop-shadow(0 0 150px rgba(255, 0, 255, 0.4));
+            animation: float 4s ease-in-out infinite, glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 50px rgba(0, 240, 255, 0.8)) 
+                        drop-shadow(0 0 100px rgba(170, 47, 255, 0.6));
+            }
+            to {
+                filter: drop-shadow(0 0 60px rgba(0, 240, 255, 1)) 
+                        drop-shadow(0 0 120px rgba(255, 0, 255, 0.8));
+            }
+        }
+
+        .hero-logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 6rem;
+            font-weight: 900;
+            letter-spacing: 0.15em;
+            background: linear-gradient(90deg, #00f0ff 0%, #00d9ff 30%, #aa2fff 70%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.4));
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .hero-tag {
@@ -253,7 +363,7 @@
             line-height: 1.1;
             letter-spacing: -2px;
             animation: fadeInUp 0.8s ease 0.2s both;
-            background: linear-gradient(135deg, #ffffff 0%, #00f0ff 50%, #7b2ff7 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #00f0ff 40%, #aa2fff 80%, #ff00ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -434,7 +544,7 @@
         .section-tag {
             display: inline-block;
             padding: 0.5rem 1.5rem;
-            background: rgba(123, 47, 247, 0.1);
+            background: rgba(170, 47, 255, 0.1);
             border: 1px solid var(--secondary);
             border-radius: 50px;
             color: var(--secondary);
@@ -527,7 +637,7 @@
         }
 
         .icon-purple {
-            background: rgba(123, 47, 247, 0.1);
+            background: rgba(170, 47, 255, 0.1);
             border: 2px solid var(--secondary);
             color: var(--secondary);
             box-shadow: var(--glow-secondary);
@@ -632,7 +742,7 @@
             left: 50%;
             width: 1000px;
             height: 1000px;
-            background: radial-gradient(circle, rgba(123, 47, 247, 0.4) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(170, 47, 255, 0.4) 0%, rgba(0, 240, 255, 0.2) 50%, transparent 70%);
             transform: translate(-50%, -50%);
             animation: pulse 5s ease-in-out infinite;
         }
@@ -650,7 +760,7 @@
             font-weight: 900;
             margin-bottom: 2rem;
             letter-spacing: -1px;
-            background: linear-gradient(135deg, #ffffff 0%, #00f0ff 50%, #ff00ff 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #00f0ff 40%, #aa2fff 80%, #ff00ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -783,6 +893,20 @@
                 display: none;
             }
 
+            .hero-logo-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            .logo-icon {
+                height: 38px;
+                width: 38px;
+            }
+
+            .hero-logo-text {
+                font-size: 4rem;
+            }
+
             .hero h1 {
                 font-size: 3rem;
             }
@@ -854,11 +978,18 @@
 <body>
     <div class="bg-animated"></div>
     <div class="grid-bg"></div>
+    
+    <!-- Logo watermarks for additional visual depth -->
+    <div style="position: fixed; top: 15%; right: 10%; width: 400px; height: 400px; background-image: url('logo-icon.png'); background-size: contain; background-repeat: no-repeat; opacity: 0.02; transform: rotate(18deg); pointer-events: none; z-index: 0;"></div>
+    <div style="position: fixed; bottom: 20%; left: 8%; width: 350px; height: 350px; background-image: url('logo-icon.png'); background-size: contain; background-repeat: no-repeat; opacity: 0.015; transform: rotate(-12deg); pointer-events: none; z-index: 0;"></div>
 
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">UP9</a>
+            <a href="#" class="logo">
+                <img src="logo-icon.png" alt="UP9 Icon" class="logo-icon" onerror="this.style.display='none'">
+                <span class="logo-text">UP9</span>
+            </a>
             <ul class="nav-menu">
                 <li><a href="#about">ABOUT</a></li>
                 <li><a href="#method">METHOD</a></li>
@@ -874,9 +1005,14 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
+            <!-- 主要LOGO展示 -->
+            <div class="hero-logo-container">
+                <img src="logo-icon.png" alt="UP9 3D Logo" class="hero-logo-image" onerror="this.style.display='none'">
+                <div class="hero-logo-text">UP9</div>
+            </div>
             <span class="hero-tag">🚀 WEB3 BUILDER COMMUNITY</span>
-            <h1>欢迎来到 UP9</h1>
-            <p class="subtitle">下一代 Web3 建设者协作网络</p>
+            <h1>Web3 建设者协作网络</h1>
+            <p class="subtitle">连接洞察、构建与资本</p>
             <p class="description">
                 通过 Insight、Build、Capital 三大支柱，连接研究、技术与资本，
                 助力 Web3 项目从 0 到 1 的完整旅程
