@@ -2120,41 +2120,65 @@
             });
         });
 
-        // Section Transition Logo Effect
+        // Section Transition Logo Effect - Enhanced
         const transitionLogo = document.getElementById('sectionTransitionLogo');
         const sections = document.querySelectorAll('section[id]');
         let lastActiveSection = null;
         let logoTimeout = null;
 
+        // Function to show transition logo
+        function showTransitionLogo() {
+            // Clear any existing timeout
+            if (logoTimeout) clearTimeout(logoTimeout);
+            
+            // Show logo
+            transitionLogo.classList.add('active');
+            
+            // Trigger re-animation by removing and re-adding the img
+            const img = transitionLogo.querySelector('img');
+            const newImg = img.cloneNode(true);
+            img.parentNode.replaceChild(newImg, img);
+            
+            // Hide after animation completes (延长到1.5秒)
+            logoTimeout = setTimeout(() => {
+                transitionLogo.classList.remove('active');
+            }, 1500);
+        }
+
+        // Show welcome logo on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                showTransitionLogo();
+            }, 300);
+        });
+
+        // Show logo when clicking navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                // Only show for section links, not for empty hash
+                if (href && href !== '#' && document.querySelector(href)) {
+                    showTransitionLogo();
+                }
+            });
+        });
+
+        // Section observer with lower threshold for easier triggering
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
                     const currentSection = entry.target;
                     
                     // Only trigger if switching to a different section
                     if (lastActiveSection && lastActiveSection !== currentSection) {
-                        // Clear any existing timeout
-                        if (logoTimeout) clearTimeout(logoTimeout);
-                        
-                        // Show logo
-                        transitionLogo.classList.add('active');
-                        
-                        // Trigger re-animation by removing and re-adding the img
-                        const img = transitionLogo.querySelector('img');
-                        const newImg = img.cloneNode(true);
-                        img.parentNode.replaceChild(newImg, img);
-                        
-                        // Hide after animation completes
-                        logoTimeout = setTimeout(() => {
-                            transitionLogo.classList.remove('active');
-                        }, 1200);
+                        showTransitionLogo();
                     }
                     
                     lastActiveSection = currentSection;
                 }
             });
         }, {
-            threshold: 0.5
+            threshold: 0.3  // 降低阈值从0.5到0.3，更容易触发
         });
 
         // Observe all major sections
@@ -2223,3 +2247,4 @@
     </script>
 </body>
 </html>
+
