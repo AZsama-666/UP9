@@ -312,8 +312,7 @@
         .logo:hover .logo-icon {
             filter: drop-shadow(0 0 20px rgba(0, 240, 255, 1)) 
                     drop-shadow(0 0 35px rgba(255, 0, 255, 0.8));
-            transform: scale(1.1) translateY(-3px);
-            animation: none;
+            animation-play-state: paused;
         }
 
         .logo-text {
@@ -1099,11 +1098,60 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Section Transition Logo */
+        .section-transition-logo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .section-transition-logo.active {
+            opacity: 1;
+        }
+
+        .section-transition-logo img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.8)) 
+                    drop-shadow(0 0 35px rgba(170, 47, 255, 0.6));
+            animation: sectionLogoSpin 1s ease-in-out;
+        }
+
+        @keyframes sectionLogoSpin {
+            0% {
+                transform: rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: rotate(360deg) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Pause animation on hover */
+        .section-transition-logo img:hover {
+            animation-play-state: paused;
+        }
     </style>
 </head>
 <body>
     <div class="bg-animated"></div>
     <div class="grid-bg"></div>
+    
+    <!-- Section Transition Logo -->
+    <div class="section-transition-logo" id="sectionTransitionLogo">
+        <img src="UP9_logo_transparent_2048.png" alt="UP9 Icon">
+    </div>
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -1116,7 +1164,7 @@
                 <li><a href="#about" data-i18n="nav.about">ABOUT</a></li>
                 <li><a href="#membership" data-i18n="nav.membership">MEMBERSHIP</a></li>
                 <li><a href="#partners" data-i18n="nav.partners">PARTNER</a></li>
-                <li><a href="#apply" class="nav-cta" data-i18n="nav.join">JOIN US</a></li>
+                <li><a href="https://t.me/up9group" target="_blank" class="nav-cta" data-i18n="nav.join">JOIN US</a></li>
                 <li class="lang-selector">
                     <select id="languageSelect" onchange="changeLanguage(this.value)">
                         <option value="en">EN</option>
@@ -1156,8 +1204,8 @@
                     UP9 is a community built around "Learn × Connect × Build". We cut noise, favor methods and boundaries, and ship together—no promise of returns.
                 </p>
                 <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="#apply" class="btn btn-primary" data-i18n="about.hero.join">JOIN US</a>
-                    <a href="#method" class="btn btn-secondary" data-i18n="about.hero.how">HOW WE WORK</a>
+                    <a href="https://t.me/up9group" target="_blank" class="btn btn-primary" data-i18n="about.hero.join">JOIN US</a>
+                    <a href="#membership" class="btn btn-secondary" data-i18n="about.hero.how">HOW WE WORK</a>
                 </div>
             </div>
 
@@ -1283,7 +1331,7 @@
                     <div class="card-icon icon-purple">
                         <i class="fas fa-gem"></i>
                     </div>
-                    <h3 class="card-title" data-i18n="membership.partner.title">Partner | Subscribe & Support</h3>
+                    <h3 class="card-title" data-i18n="membership.partner.title">Contributor | Subscribe & Support</h3>
                     <p class="card-description" data-i18n="membership.partner.desc">
                         Gain access and support through service packages (no returns promised).
                     </p>
@@ -1336,7 +1384,7 @@
     </section>
 
     <!-- Partners Carousel Section -->
-    <section class="partners-carousel">
+    <section id="partners" class="partners-carousel" style="padding-top: 10rem;">
         <div class="container">
             <div class="partners-carousel-header">
                 <h2 class="partners-carousel-title" data-i18n="partners.title">Our Trusted Partners</h2>
@@ -1582,94 +1630,6 @@
         </div>
     </section>
 
-    <!-- Method Section -->
-    <section id="method" class="section">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-tag">METHODOLOGY</span>
-                <h2 class="section-title" data-i18n="method.title">Three Pillars Empowering Web3</h2>
-                <p class="section-description" data-i18n="method.description">
-                    A systematic methodology providing end-to-end support from insight to implementation for Web3 projects
-                </p>
-            </div>
-
-            <div class="cards-grid">
-                <div class="card reveal">
-                    <div class="card-icon icon-cyber">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3 class="card-title" data-i18n="method.insight.title">Insight</h3>
-                    <p class="card-description" data-i18n="method.insight.desc">
-                        Deep research on market trends, technology evolution, and user needs, providing data-driven decision support
-                    </p>
-                    <div class="feature-list">
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-check"></i></div>
-                            <div class="feature-text"><strong data-i18n="method.insight.feature1.title">Market Research</strong> <span data-i18n="method.insight.feature1.desc">- Track analysis, competitor research, user profiling</span></div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-check"></i></div>
-                            <div class="feature-text"><strong data-i18n="method.insight.feature2.title">On-chain Analysis</strong> <span data-i18n="method.insight.feature2.desc">- Dune dashboards, wallet behavior, fund flow</span></div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-check"></i></div>
-                            <div class="feature-text"><strong data-i18n="method.insight.feature3.title">Trend Forecasting</strong> <span data-i18n="method.insight.feature3.desc">- Tech evolution, policy changes, market opportunities</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card reveal">
-                    <div class="card-icon icon-purple">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3 class="card-title" data-i18n="method.build.title">Build</h3>
-                    <p class="card-description" data-i18n="method.build.desc">
-                        From MVP to product iteration, providing full-cycle support for technical implementation, growth experiments, and community operations
-                    </p>
-                    <div class="feature-list">
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-check"></i></div>
-                            <div class="feature-text"><strong data-i18n="method.build.feature1.title">Technical Development</strong> <span data-i18n="method.build.feature1.desc">- Smart contracts, frontend, backend, infrastructure</span></div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-check"></i></div>
-                            <div class="feature-text"><strong data-i18n="method.build.feature2.title">Product Design</strong> <span data-i18n="method.build.feature2.desc">- UX, interaction design, prototype validation</span></div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-check"></i></div>
-                            <div class="feature-text"><strong data-i18n="method.build.feature3.title">Growth Experiments</strong> <span data-i18n="method.build.feature3.desc">- A/B testing, data analytics, iterative optimization</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card reveal">
-                    <div class="card-icon icon-pink">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="card-title" data-i18n="method.capital.title">Capital</h3>
-                    <p class="card-description" data-i18n="method.capital.desc">
-                        Connecting quality projects with investors, assisting with fundraising strategy, pitch deck optimization, and roadshow preparation
-                    </p>
-                    <div class="feature-list">
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-check"></i></div>
-                            <div class="feature-text"><strong data-i18n="method.capital.feature1.title">Fundraising Strategy</strong> <span data-i18n="method.capital.feature1.desc">- Valuation design, funding rhythm, investor selection</span></div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-check"></i></div>
-                            <div class="feature-text"><strong data-i18n="method.capital.feature2.title">Pitch Deck Optimization</strong> <span data-i18n="method.capital.feature2.desc">- Business plan writing and refinement</span></div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-check"></i></div>
-                            <div class="feature-text"><strong data-i18n="method.capital.feature3.title">Investor Connections</strong> <span data-i18n="method.capital.feature3.desc">- VCs, family offices, strategic investors</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Outcomes Section -->
     <!-- CTA Section -->
     <section id="apply" class="cta-section">
         <div class="cta-content">
@@ -1681,17 +1641,48 @@
                 <a href="#" class="btn btn-primary" data-i18n="cta.apply">APPLY NOW</a>
                 <a href="#contact" class="btn btn-secondary" data-i18n="cta.contact">CONTACT US</a>
             </div>
+            
+            <!-- Telegram Community Section -->
+            <div style="margin-top: 4rem; padding-top: 4rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" data-i18n="telegram.title">Join Our Telegram Community</h3>
+                <p style="font-size: 1rem; opacity: 0.8; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;" data-i18n="telegram.description">Connect with Web3 builders, get latest updates, and participate in discussions</p>
+                <div style="display: flex; gap: 2rem; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
+                    <!-- QR Code placeholder - you can replace 'telegram_qr.png' with your actual QR code file -->
+                    <div style="text-align: center;">
+                        <div style="width: 200px; height: 200px; background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(170, 47, 255, 0.1)); border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; border: 2px solid rgba(0, 240, 255, 0.3);">
+                            <i class="fab fa-telegram" style="font-size: 5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                        </div>
+                        <p style="font-size: 0.9rem; opacity: 0.7;" data-i18n="telegram.scan">Scan to join</p>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 300px; text-align: left;">
+                        <a href="https://t.me/up9community" target="_blank" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.5rem; background: rgba(0, 240, 255, 0.1); border-radius: 0.5rem; transition: all 0.3s ease; text-decoration: none; border: 1px solid rgba(0, 240, 255, 0.3);" onmouseover="this.style.background='rgba(0, 240, 255, 0.2)'" onmouseout="this.style.background='rgba(0, 240, 255, 0.1)'">
+                            <i class="fab fa-telegram" style="font-size: 1.5rem; color: var(--primary);"></i>
+                            <div>
+                                <div style="font-weight: 600;" data-i18n="telegram.channel">Channel</div>
+                                <div style="font-size: 0.85rem; opacity: 0.7;" data-i18n="telegram.channel_desc">Latest updates & announcements</div>
+                            </div>
+                        </a>
+                        <a href="https://t.me/up9group" target="_blank" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.5rem; background: rgba(170, 47, 255, 0.1); border-radius: 0.5rem; transition: all 0.3s ease; text-decoration: none; border: 1px solid rgba(170, 47, 255, 0.3);" onmouseover="this.style.background='rgba(170, 47, 255, 0.2)'" onmouseout="this.style.background='rgba(170, 47, 255, 0.1)'">
+                            <i class="fab fa-telegram" style="font-size: 1.5rem; color: var(--secondary);"></i>
+                            <div>
+                                <div style="font-weight: 600;" data-i18n="telegram.group">Group</div>
+                                <div style="font-size: 0.85rem; opacity: 0.7;" data-i18n="telegram.group_desc">Community discussions & support</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer id="contact" class="footer">
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <span class="footer-logo">UP9</span>
                     <p class="footer-description" data-i18n="footer.description">
-                        Professional builder community for Web3 research, development, and capital connections. Connecting insight, technology, and capital through systematic methodology to help Web3 projects achieve breakthroughs.
+                        Professional Web3 builder community connecting researchers, developers, and innovators. Join UP9 to collaborate, learn, and build the decentralized future together.
                     </p>
                     <div class="social-links">
                         <a href="https://twitter.com/up9community" class="social-link" target="_blank">
@@ -1713,9 +1704,9 @@
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="#about" data-i18n="footer.about">About Us</a></li>
-                        <li><a href="#method" data-i18n="footer.method">Methodology</a></li>
-                        <li><a href="#outcomes" data-i18n="footer.outcomes">Case Studies</a></li>
-                        <li><a href="#events" data-i18n="footer.events">Events</a></li>
+                        <li><a href="#membership" data-i18n="footer.membership">Membership</a></li>
+                        <li><a href="#partners" data-i18n="footer.partners_link">Partners</a></li>
+                        <li><a href="https://t.me/up9group" target="_blank" data-i18n="footer.join">Join Us</a></li>
                     </ul>
                 </div>
 
@@ -1849,7 +1840,7 @@
                 'membership.maker.benefit.desc': 'Name display; content archive; weekly newsletter mention; access to collaboration group',
                 'membership.maker.join.title': 'How to Join:',
                 'membership.maker.join.desc': 'Submit a recent contribution (link or screenshot), get tagged as Maker after approval. Pause and return anytime',
-                'membership.partner.title': 'Partner | Subscribe & Support',
+                'membership.partner.title': 'Contributor | Subscribe & Support',
                 'membership.partner.desc': 'Gain access and support through service packages (no returns promised).',
                 'membership.partner.core.title': 'Core:',
                 'membership.partner.core.desc': 'Public event seats; basic resource access; open day participation',
@@ -1869,55 +1860,22 @@
                 'membership.host.note.desc': 'No rigid metrics; consensus on "rhythm and review"',
                 'partners.title': 'Our Trusted Partners',
                 'partners.subtitle': 'Collaborating with industry leaders to drive Web3 innovation',
-                'method.title': 'Three Pillars Empowering Web3',
-                'method.description': 'A systematic methodology providing end-to-end support from insight to implementation for Web3 projects',
-                'method.insight.title': 'Insight',
-                'method.insight.desc': 'Deep research on market trends, technology evolution, and user needs, providing data-driven decision support',
-                'method.insight.feature1.title': 'Market Research',
-                'method.insight.feature1.desc': ' - Track analysis, competitor research, user profiling',
-                'method.insight.feature2.title': 'On-chain Analysis',
-                'method.insight.feature2.desc': ' - Dune dashboards, wallet behavior, fund flow',
-                'method.insight.feature3.title': 'Trend Forecasting',
-                'method.insight.feature3.desc': ' - Tech evolution, policy changes, market opportunities',
-                'method.build.title': 'Build',
-                'method.build.desc': 'From MVP to product iteration, providing full-cycle support for technical implementation, growth experiments, and community operations',
-                'method.build.feature1.title': 'Technical Development',
-                'method.build.feature1.desc': ' - Smart contracts, frontend, backend, infrastructure',
-                'method.build.feature2.title': 'Product Design',
-                'method.build.feature2.desc': ' - UX, interaction design, prototype validation',
-                'method.build.feature3.title': 'Growth Experiments',
-                'method.build.feature3.desc': ' - A/B testing, data analytics, iterative optimization',
-                'method.capital.title': 'Capital',
-                'method.capital.desc': 'Connecting quality projects with investors, assisting with fundraising strategy, pitch deck optimization, and roadshow preparation',
-                'method.capital.feature1.title': 'Fundraising Strategy',
-                'method.capital.feature1.desc': ' - Valuation design, funding rhythm, investor selection',
-                'method.capital.feature2.title': 'Pitch Deck Optimization',
-                'method.capital.feature2.desc': ' - Business plan writing and refinement',
-                'method.capital.feature3.title': 'Investor Connections',
-                'method.capital.feature3.desc': ' - VCs, family offices, strategic investors',
-                'outcomes.title': 'Real Projects, Verifiable Results',
-                'outcomes.description': 'We help Web3 builders achieve breakthroughs with professional capabilities, backed by on-chain data',
-                'outcomes.case1.title': 'DeFi Protocol TVL Growth 300%',
-                'outcomes.case1.desc': 'Through systematic growth experiments and community operations, achieved TVL from $10M to $40M in 3 months. Assisted with tokenomics design and liquidity incentive programs.',
-                'outcomes.case1.result': 'Result:',
-                'outcomes.case1.result_desc': ' TVL $10M → $40M, 5x user growth',
-                'outcomes.case2.title': 'NFT Project Raised $2M Successfully',
-                'outcomes.case2.desc': 'Completed market research, competitor analysis, pitch deck optimization, and investor connections, successfully closed seed round. Reached out to 12 institutions, secured investment from top-tier VCs.',
-                'outcomes.case2.result': 'Result:',
-                'outcomes.case2.result_desc': ' Seed round $2M, valuation $15M',
-                'outcomes.case3.title': 'L2 Solution Technical Breakthrough',
-                'outcomes.case3.desc': 'Deep technical research and prototype validation, helping the team find optimal technical solution. Completed zkEVM feasibility analysis and PoC development.',
-                'outcomes.case3.result': 'Result:',
-                'outcomes.case3.result_desc': ' PoC validated successfully, 10x TPS improvement',
                 'cta.title': 'Ready to Get Started?',
                 'cta.description': 'Join UP9 and build groundbreaking projects with 50+ talented Web3 builders in the decentralized future',
                 'cta.apply': 'APPLY NOW',
                 'cta.contact': 'CONTACT US',
-                'footer.description': 'Professional builder community for Web3 research, development, and capital connections. Connecting insight, technology, and capital through systematic methodology to help Web3 projects achieve breakthroughs.',
+                'telegram.title': 'Join Our Telegram Community',
+                'telegram.description': 'Connect with Web3 builders, get latest updates, and participate in discussions',
+                'telegram.scan': 'Scan to join',
+                'telegram.channel': 'Channel',
+                'telegram.channel_desc': 'Latest updates & announcements',
+                'telegram.group': 'Group',
+                'telegram.group_desc': 'Community discussions & support',
+                'footer.description': 'Professional Web3 builder community connecting researchers, developers, and innovators. Join UP9 to collaborate, learn, and build the decentralized future together.',
                 'footer.about': 'About Us',
-                'footer.method': 'Methodology',
-                'footer.outcomes': 'Case Studies',
-                'footer.events': 'Events',
+                'footer.membership': 'Membership',
+                'footer.partners_link': 'Partners',
+                'footer.join': 'Join Us',
                 'footer.resources': 'Templates',
                 'footer.partners': 'Partners',
                 'footer.faq': 'FAQ',
@@ -1975,7 +1933,7 @@
                 'membership.maker.benefit.desc': '名字展示；收录到资料区；周报提及；进入共建群',
                 'membership.maker.join.title': '加入方式：',
                 'membership.maker.join.desc': '提交一个近期成果（链接或截图均可），通过后标注为 Maker。可随时暂停与返回',
-                'membership.partner.title': 'Partner｜订阅与服务',
+                'membership.partner.title': 'Contributor｜贡献者服务',
                 'membership.partner.desc': '通过服务包获得席位与支持（不承诺收益）。',
                 'membership.partner.core.title': 'Core：',
                 'membership.partner.core.desc': '公开活动席位；资料区基础访问；开放日参与',
@@ -1995,55 +1953,22 @@
                 'membership.host.note.desc': '不设硬性指标；以"有节奏、有回顾"为共识',
                 'partners.title': '我们的合作伙伴',
                 'partners.subtitle': '携手行业领军者，共同推动 Web3 创新',
-                'method.title': '三大支柱赋能 Web3',
-                'method.description': '系统化的方法论体系，为 Web3 项目提供从洞察到落地的全流程支持',
-                'method.insight.title': 'Insight 洞察',
-                'method.insight.desc': '深度研究市场趋势、技术演进和用户需求，为项目提供数据驱动的决策支持',
-                'method.insight.feature1.title': '市场研究',
-                'method.insight.feature1.desc': ' - 赛道分析、竞品调研、用户画像',
-                'method.insight.feature2.title': '链上分析',
-                'method.insight.feature2.desc': ' - Dune 看板、钱包行为、资金流向',
-                'method.insight.feature3.title': '趋势预判',
-                'method.insight.feature3.desc': ' - 技术演进、政策变化、市场机会',
-                'method.build.title': 'Build 构建',
-                'method.build.desc': '从 MVP 到产品迭代，提供技术实现、增长实验和社区运营的全流程支持',
-                'method.build.feature1.title': '技术开发',
-                'method.build.feature1.desc': ' - 智能合约、前端、后端、基础设施',
-                'method.build.feature2.title': '产品设计',
-                'method.build.feature2.desc': ' - 用户体验、交互设计、原型验证',
-                'method.build.feature3.title': '增长实验',
-                'method.build.feature3.desc': ' - A/B 测试、数据分析、迭代优化',
-                'method.capital.title': 'Capital 资本',
-                'method.capital.desc': '连接优质项目与投资机构，协助完成融资策略、BP 优化和路演准备',
-                'method.capital.feature1.title': '融资策略',
-                'method.capital.feature1.desc': ' - 估值设计、融资节奏、投资人选择',
-                'method.capital.feature2.title': 'BP 优化',
-                'method.capital.feature2.desc': ' - 商业计划书撰写与打磨',
-                'method.capital.feature3.title': '投资人对接',
-                'method.capital.feature3.desc': ' - VC、家族办公室、战略投资者',
-                'outcomes.title': '真实项目，可验证成果',
-                'outcomes.description': '我们用专业能力帮助 Web3 建设者实现突破，每个成果都有链上数据支持',
-                'outcomes.case1.title': 'DeFi 协议 TVL 增长 300%',
-                'outcomes.case1.desc': '通过系统化增长实验和社区运营，3 个月内实现 TVL 从 $10M 到 $40M。协助完成代币经济学设计和流动性激励方案。',
-                'outcomes.case1.result': '成果：',
-                'outcomes.case1.result_desc': ' TVL $10M → $40M，用户增长 5x',
-                'outcomes.case2.title': 'NFT 项目成功融资 $2M',
-                'outcomes.case2.desc': '完成市场研究、竞品分析、BP 优化和投资人对接，成功完成种子轮融资。对接 12 家机构，最终获得顶级 VC 投资。',
-                'outcomes.case2.result': '成果：',
-                'outcomes.case2.result_desc': ' 种子轮 $2M，估值 $15M',
-                'outcomes.case3.title': 'L2 解决方案技术突破',
-                'outcomes.case3.desc': '深度技术研究与原型验证，帮助团队找到最优技术方案。完成 zkEVM 可行性分析和 PoC 开发。',
-                'outcomes.case3.result': '成果：',
-                'outcomes.case3.result_desc': ' PoC 验证成功，TPS 提升 10x',
                 'cta.title': '准备好开始了吗？',
                 'cta.description': '加入 UP9，与 50+ 优秀的 Web3 建设者一起，在去中心化的未来中创造突破性项目',
                 'cta.apply': '立即申请',
                 'cta.contact': '联系我们',
-                'footer.description': 'Web3 研究、构建和资本对接的专业建设者社群。通过系统化方法论，连接洞察、技术与资本，助力 Web3 项目实现突破。',
+                'telegram.title': '加入我们的 Telegram 社群',
+                'telegram.description': '与 Web3 建设者连接，获取最新动态，参与社区讨论',
+                'telegram.scan': '扫码加入',
+                'telegram.channel': '订阅频道',
+                'telegram.channel_desc': '最新动态与公告',
+                'telegram.group': '讨论群组',
+                'telegram.group_desc': '社区讨论与支持',
+                'footer.description': 'Web3 专业建设者社群，连接研究者、开发者和创新者。加入 UP9，共同协作、学习，建设去中心化的未来。',
                 'footer.about': '关于我们',
-                'footer.method': '方法论',
-                'footer.outcomes': '成果案例',
-                'footer.events': '活动路演',
+                'footer.membership': '成员体系',
+                'footer.partners_link': '合作伙伴',
+                'footer.join': '加入我们',
                 'footer.resources': '模板资源',
                 'footer.partners': '伙伴合作',
                 'footer.faq': 'FAQ',
@@ -2101,7 +2026,7 @@
                 'membership.maker.benefit.desc': '名字展示；收錄到資料區；週報提及；進入共建群',
                 'membership.maker.join.title': '加入方式：',
                 'membership.maker.join.desc': '提交一個近期成果（鏈接或截圖均可），通過後標註為 Maker。可隨時暫停與返回',
-                'membership.partner.title': 'Partner｜訂閱與服務',
+                'membership.partner.title': 'Contributor｜貢獻者服務',
                 'membership.partner.desc': '通過服務包獲得席位與支持（不承諾收益）。',
                 'membership.partner.core.title': 'Core：',
                 'membership.partner.core.desc': '公開活動席位；資料區基礎訪問；開放日參與',
@@ -2121,55 +2046,22 @@
                 'membership.host.note.desc': '不設硬性指標；以"有節奏、有回顧"為共識',
                 'partners.title': '我們的合作夥伴',
                 'partners.subtitle': '攜手行業領軍者，共同推動 Web3 創新',
-                'method.title': '三大支柱賦能 Web3',
-                'method.description': '系統化的方法論體系，為 Web3 項目提供從洞察到落地的全流程支持',
-                'method.insight.title': 'Insight 洞察',
-                'method.insight.desc': '深度研究市場趨勢、技術演進和用戶需求，為項目提供數據驅動的決策支持',
-                'method.insight.feature1.title': '市場研究',
-                'method.insight.feature1.desc': ' - 賽道分析、競品調研、用戶畫像',
-                'method.insight.feature2.title': '鏈上分析',
-                'method.insight.feature2.desc': ' - Dune 看板、錢包行為、資金流向',
-                'method.insight.feature3.title': '趨勢預判',
-                'method.insight.feature3.desc': ' - 技術演進、政策變化、市場機會',
-                'method.build.title': 'Build 構建',
-                'method.build.desc': '從 MVP 到產品迭代，提供技術實現、增長實驗和社區運營的全流程支持',
-                'method.build.feature1.title': '技術開發',
-                'method.build.feature1.desc': ' - 智能合約、前端、後端、基礎設施',
-                'method.build.feature2.title': '產品設計',
-                'method.build.feature2.desc': ' - 用戶體驗、交互設計、原型驗證',
-                'method.build.feature3.title': '增長實驗',
-                'method.build.feature3.desc': ' - A/B 測試、數據分析、迭代優化',
-                'method.capital.title': 'Capital 資本',
-                'method.capital.desc': '連接優質項目與投資機構，協助完成融資策略、BP 優化和路演準備',
-                'method.capital.feature1.title': '融資策略',
-                'method.capital.feature1.desc': ' - 估值設計、融資節奏、投資人選擇',
-                'method.capital.feature2.title': 'BP 優化',
-                'method.capital.feature2.desc': ' - 商業計劃書撰寫與打磨',
-                'method.capital.feature3.title': '投資人對接',
-                'method.capital.feature3.desc': ' - VC、家族辦公室、戰略投資者',
-                'outcomes.title': '真實項目，可驗證成果',
-                'outcomes.description': '我們用專業能力幫助 Web3 建設者實現突破，每個成果都有鏈上數據支持',
-                'outcomes.case1.title': 'DeFi 協議 TVL 增長 300%',
-                'outcomes.case1.desc': '通過系統化增長實驗和社區運營，3 個月內實現 TVL 從 $10M 到 $40M。協助完成代幣經濟學設計和流動性激勵方案。',
-                'outcomes.case1.result': '成果：',
-                'outcomes.case1.result_desc': ' TVL $10M → $40M，用戶增長 5x',
-                'outcomes.case2.title': 'NFT 項目成功融資 $2M',
-                'outcomes.case2.desc': '完成市場研究、競品分析、BP 優化和投資人對接，成功完成種子輪融資。對接 12 家機構，最終獲得頂級 VC 投資。',
-                'outcomes.case2.result': '成果：',
-                'outcomes.case2.result_desc': ' 種子輪 $2M，估值 $15M',
-                'outcomes.case3.title': 'L2 解決方案技術突破',
-                'outcomes.case3.desc': '深度技術研究與原型驗證，幫助團隊找到最優技術方案。完成 zkEVM 可行性分析和 PoC 開發。',
-                'outcomes.case3.result': '成果：',
-                'outcomes.case3.result_desc': ' PoC 驗證成功，TPS 提升 10x',
                 'cta.title': '準備好開始了嗎？',
                 'cta.description': '加入 UP9，與 50+ 優秀的 Web3 建設者一起，在去中心化的未來中創造突破性項目',
                 'cta.apply': '立即申請',
                 'cta.contact': '聯繫我們',
-                'footer.description': 'Web3 研究、構建和資本對接的專業建設者社群。通過系統化方法論，連接洞察、技術與資本，助力 Web3 項目實現突破。',
+                'telegram.title': '加入我們的 Telegram 社群',
+                'telegram.description': '與 Web3 建設者連接，獲取最新動態，參與社區討論',
+                'telegram.scan': '掃碼加入',
+                'telegram.channel': '訂閱頻道',
+                'telegram.channel_desc': '最新動態與公告',
+                'telegram.group': '討論群組',
+                'telegram.group_desc': '社區討論與支持',
+                'footer.description': 'Web3 專業建設者社群，連接研究者、開發者和創新者。加入 UP9，共同協作、學習，建設去中心化的未來。',
                 'footer.about': '關於我們',
-                'footer.method': '方法論',
-                'footer.outcomes': '成果案例',
-                'footer.events': '活動路演',
+                'footer.membership': '成員體系',
+                'footer.partners_link': '合作夥伴',
+                'footer.join': '加入我們',
                 'footer.resources': '模板資源',
                 'footer.partners': '夥伴合作',
                 'footer.faq': 'FAQ',
@@ -2226,6 +2118,72 @@
                     });
                 }
             });
+        });
+
+        // Section Transition Logo Effect - Enhanced
+        const transitionLogo = document.getElementById('sectionTransitionLogo');
+        const sections = document.querySelectorAll('section[id]');
+        let lastActiveSection = null;
+        let logoTimeout = null;
+
+        // Function to show transition logo
+        function showTransitionLogo() {
+            // Clear any existing timeout
+            if (logoTimeout) clearTimeout(logoTimeout);
+            
+            // Show logo
+            transitionLogo.classList.add('active');
+            
+            // Trigger re-animation by removing and re-adding the img
+            const img = transitionLogo.querySelector('img');
+            const newImg = img.cloneNode(true);
+            img.parentNode.replaceChild(newImg, img);
+            
+            // Hide after animation completes (延长到1.5秒)
+            logoTimeout = setTimeout(() => {
+                transitionLogo.classList.remove('active');
+            }, 1500);
+        }
+
+        // Show welcome logo on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                showTransitionLogo();
+            }, 300);
+        });
+
+        // Show logo when clicking navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                // Only show for section links, not for empty hash
+                if (href && href !== '#' && document.querySelector(href)) {
+                    showTransitionLogo();
+                }
+            });
+        });
+
+        // Section observer with lower threshold for easier triggering
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+                    const currentSection = entry.target;
+                    
+                    // Only trigger if switching to a different section
+                    if (lastActiveSection && lastActiveSection !== currentSection) {
+                        showTransitionLogo();
+                    }
+                    
+                    lastActiveSection = currentSection;
+                }
+            });
+        }, {
+            threshold: 0.3  // 降低阈值从0.5到0.3，更容易触发
+        });
+
+        // Observe all major sections
+        sections.forEach(section => {
+            sectionObserver.observe(section);
         });
 
         // Scroll reveal animation
@@ -2289,3 +2247,4 @@
     </script>
 </body>
 </html>
+
