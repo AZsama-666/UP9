@@ -217,15 +217,18 @@
 
         .partner-card {
             flex-shrink: 0;
-            width: 200px;
-            height: 100px;
+            width: 220px;
+            height: 120px;
             margin: 0 2rem;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(0, 240, 255, 0.1);
             border-radius: 12px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 0.8rem;
+            padding: 1rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -253,14 +256,27 @@
             background: rgba(0, 240, 255, 0.05);
         }
 
+        .partner-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            transition: all 0.3s ease;
+        }
+
+        .partner-card:hover .partner-logo {
+            filter: brightness(1) invert(0);
+            transform: scale(1.1);
+        }
+
         .partner-name {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             color: var(--text-primary);
             text-align: center;
-            padding: 1rem;
             transition: all 0.3s ease;
+            line-height: 1.3;
         }
 
         .partner-card:hover .partner-name {
@@ -1328,68 +1344,241 @@
             </div>
         </div>
         <div class="partners-track">
-            <!-- First set of partners -->
-            <div class="partner-card"><div class="partner-name">Binance</div></div>
-            <div class="partner-card"><div class="partner-name">Coinbase</div></div>
-            <div class="partner-card"><div class="partner-name">OKX</div></div>
-            <div class="partner-card"><div class="partner-name">Solana</div></div>
-            <div class="partner-card"><div class="partner-name">Polygon</div></div>
-            <div class="partner-card"><div class="partner-name">Chainlink</div></div>
-            <div class="partner-card"><div class="partner-name">Avalanche</div></div>
-            <div class="partner-card"><div class="partner-name">Tether</div></div>
-            <div class="partner-card"><div class="partner-name">Circle</div></div>
-            <div class="partner-card"><div class="partner-name">Paradigm</div></div>
-            <div class="partner-card"><div class="partner-name">a16z</div></div>
-            <div class="partner-card"><div class="partner-name">Sequoia</div></div>
-            <div class="partner-card"><div class="partner-name">BlackRock</div></div>
-            <div class="partner-card"><div class="partner-name">Fidelity</div></div>
-            <div class="partner-card"><div class="partner-name">Goldman Sachs</div></div>
-            <div class="partner-card"><div class="partner-name">AWS</div></div>
-            <div class="partner-card"><div class="partner-name">Google Cloud</div></div>
-            <div class="partner-card"><div class="partner-name">Microsoft Azure</div></div>
-            <div class="partner-card"><div class="partner-name">Alibaba Cloud</div></div>
-            <div class="partner-card"><div class="partner-name">Tencent Cloud</div></div>
-            <div class="partner-card"><div class="partner-name">Cloudflare</div></div>
-            <div class="partner-card"><div class="partner-name">PayPal</div></div>
-            <div class="partner-card"><div class="partner-name">Grayscale</div></div>
-            <div class="partner-card"><div class="partner-name">Bitget</div></div>
-            <div class="partner-card"><div class="partner-name">Fireblocks</div></div>
-            <div class="partner-card"><div class="partner-name">Consensys</div></div>
-            <div class="partner-card"><div class="partner-name">zkSync</div></div>
-            <div class="partner-card"><div class="partner-name">Lido</div></div>
-            <div class="partner-card"><div class="partner-name">Aave</div></div>
-            <div class="partner-card"><div class="partner-name">Sui</div></div>
+            <!-- Platinum Sponsors -->
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/bitstamp.net" alt="Bitstamp" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Bitstamp</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/solana.com" alt="Solana" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Solana</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/sui.io" alt="Sui" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Sui</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/coinw.com" alt="CoinW" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">CoinW</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/mexc.com" alt="MEXC" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">MEXC</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/kucoin.com" alt="KuCoin" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">KuCoin</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/gemini.com" alt="Gemini" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Gemini</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/ton.org" alt="TON" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">TON</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/stacks.co" alt="Stacks" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Stacks</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/cardano.org" alt="Cardano" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Cardano</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/polymarket.com" alt="Polymarket" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Polymarket</div>
+            </div>
+            <!-- Gold Sponsors -->
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/circle.com" alt="Circle" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Circle</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/ripple.com" alt="Ripple" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Ripple</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/chiliz.com" alt="Chiliz" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Chiliz</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/1inch.io" alt="1inch" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">1inch</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/frax.finance" alt="Frax" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Frax</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/crypto.com" alt="Crypto.com" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Crypto.com</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/akash.network" alt="Akash" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Akash</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/bitmart.com" alt="BitMart" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">BitMart</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/bitpanda.com" alt="Bitpanda" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Bitpanda</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/emurgo.io" alt="EMURGO" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">EMURGO</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/conflux-chain.org" alt="Conflux" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Conflux</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/changenow.io" alt="ChangeNOW" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">ChangeNOW</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/coinex.com" alt="CoinEx" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">CoinEx</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/coredao.org" alt="Core" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Core</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/fireblocks.com" alt="Fireblocks" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Fireblocks</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/htx.com" alt="HTX" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">HTX</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/neo.org" alt="Neo" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Neo</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/reserve.org" alt="Reserve" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Reserve</div>
+            </div>
             <!-- Duplicate set for seamless loop -->
-            <div class="partner-card"><div class="partner-name">Binance</div></div>
-            <div class="partner-card"><div class="partner-name">Coinbase</div></div>
-            <div class="partner-card"><div class="partner-name">OKX</div></div>
-            <div class="partner-card"><div class="partner-name">Solana</div></div>
-            <div class="partner-card"><div class="partner-name">Polygon</div></div>
-            <div class="partner-card"><div class="partner-name">Chainlink</div></div>
-            <div class="partner-card"><div class="partner-name">Avalanche</div></div>
-            <div class="partner-card"><div class="partner-name">Tether</div></div>
-            <div class="partner-card"><div class="partner-name">Circle</div></div>
-            <div class="partner-card"><div class="partner-name">Paradigm</div></div>
-            <div class="partner-card"><div class="partner-name">a16z</div></div>
-            <div class="partner-card"><div class="partner-name">Sequoia</div></div>
-            <div class="partner-card"><div class="partner-name">BlackRock</div></div>
-            <div class="partner-card"><div class="partner-name">Fidelity</div></div>
-            <div class="partner-card"><div class="partner-name">Goldman Sachs</div></div>
-            <div class="partner-card"><div class="partner-name">AWS</div></div>
-            <div class="partner-card"><div class="partner-name">Google Cloud</div></div>
-            <div class="partner-card"><div class="partner-name">Microsoft Azure</div></div>
-            <div class="partner-card"><div class="partner-name">Alibaba Cloud</div></div>
-            <div class="partner-card"><div class="partner-name">Tencent Cloud</div></div>
-            <div class="partner-card"><div class="partner-name">Cloudflare</div></div>
-            <div class="partner-card"><div class="partner-name">PayPal</div></div>
-            <div class="partner-card"><div class="partner-name">Grayscale</div></div>
-            <div class="partner-card"><div class="partner-name">Bitget</div></div>
-            <div class="partner-card"><div class="partner-name">Fireblocks</div></div>
-            <div class="partner-card"><div class="partner-name">Consensys</div></div>
-            <div class="partner-card"><div class="partner-name">zkSync</div></div>
-            <div class="partner-card"><div class="partner-name">Lido</div></div>
-            <div class="partner-card"><div class="partner-name">Aave</div></div>
-            <div class="partner-card"><div class="partner-name">Sui</div></div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/bitstamp.net" alt="Bitstamp" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Bitstamp</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/solana.com" alt="Solana" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Solana</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/sui.io" alt="Sui" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Sui</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/coinw.com" alt="CoinW" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">CoinW</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/mexc.com" alt="MEXC" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">MEXC</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/kucoin.com" alt="KuCoin" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">KuCoin</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/gemini.com" alt="Gemini" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Gemini</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/ton.org" alt="TON" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">TON</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/stacks.co" alt="Stacks" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Stacks</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/cardano.org" alt="Cardano" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Cardano</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/polymarket.com" alt="Polymarket" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Polymarket</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/circle.com" alt="Circle" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Circle</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/ripple.com" alt="Ripple" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Ripple</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/chiliz.com" alt="Chiliz" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Chiliz</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/1inch.io" alt="1inch" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">1inch</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/frax.finance" alt="Frax" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Frax</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/crypto.com" alt="Crypto.com" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Crypto.com</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/akash.network" alt="Akash" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Akash</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/bitmart.com" alt="BitMart" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">BitMart</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/bitpanda.com" alt="Bitpanda" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Bitpanda</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/emurgo.io" alt="EMURGO" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">EMURGO</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/conflux-chain.org" alt="Conflux" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Conflux</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/changenow.io" alt="ChangeNOW" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">ChangeNOW</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/coinex.com" alt="CoinEx" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">CoinEx</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/coredao.org" alt="Core" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Core</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/fireblocks.com" alt="Fireblocks" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Fireblocks</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/htx.com" alt="HTX" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">HTX</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/neo.org" alt="Neo" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Neo</div>
+            </div>
+            <div class="partner-card">
+                <img src="https://logo.clearbit.com/reserve.org" alt="Reserve" class="partner-logo" onerror="this.style.display='none'">
+                <div class="partner-name">Reserve</div>
+            </div>
         </div>
     </section>
 
