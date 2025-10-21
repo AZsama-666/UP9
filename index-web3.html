@@ -155,6 +155,144 @@
             }
         }
 
+        /* Partners Carousel */
+        .partners-carousel {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .partners-carousel::before,
+        .partners-carousel::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 15%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .partners-carousel::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--bg-dark) 0%, transparent 100%);
+        }
+
+        .partners-carousel::after {
+            right: 0;
+            background: linear-gradient(270deg, var(--bg-dark) 0%, transparent 100%);
+        }
+
+        .partners-carousel-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .partners-carousel-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .partners-carousel-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .partners-track {
+            display: flex;
+            animation: scroll 40s linear infinite;
+            width: fit-content;
+        }
+
+        .partners-track:hover {
+            animation-play-state: paused;
+        }
+
+        .partner-card {
+            flex-shrink: 0;
+            width: 200px;
+            height: 100px;
+            margin: 0 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .partner-card:hover::before {
+            left: 100%;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--glow-primary);
+            background: rgba(0, 240, 255, 0.05);
+        }
+
+        .partner-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .partner-card:hover .partner-name {
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .partner-card {
+                width: 150px;
+                height: 80px;
+                margin: 0 1rem;
+            }
+
+            .partner-name {
+                font-size: 0.9rem;
+            }
+
+            .partners-carousel-title {
+                font-size: 2rem;
+            }
+        }
+
         .logo:hover .logo-icon {
             filter: drop-shadow(0 0 20px rgba(0, 240, 255, 1)) 
                     drop-shadow(0 0 35px rgba(255, 0, 255, 0.8));
@@ -988,29 +1126,6 @@
             </p>
             <div class="hero-buttons">
                 <a href="#apply" class="btn btn-primary" data-i18n="hero.apply">APPLY NOW</a>
-                <a href="#contact" class="btn btn-secondary" data-i18n="hero.contact">SCHEDULE A CALL</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats reveal">
-        <div class="stats-container">
-            <div class="stat-card">
-                <span class="stat-number">50+</span>
-                <span class="stat-label" data-i18n="stats.members">Active Members</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">20+</span>
-                <span class="stat-label" data-i18n="stats.projects">Successful Projects</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">$15M+</span>
-                <span class="stat-label" data-i18n="stats.funding">Total Funding Raised</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">300%</span>
-                <span class="stat-label" data-i18n="stats.growth">Average Growth</span>
             </div>
         </div>
     </section>
@@ -1204,6 +1319,80 @@
         </div>
     </section>
 
+    <!-- Partners Carousel Section -->
+    <section class="partners-carousel">
+        <div class="container">
+            <div class="partners-carousel-header">
+                <h2 class="partners-carousel-title" data-i18n="partners.title">Our Trusted Partners</h2>
+                <p class="partners-carousel-subtitle" data-i18n="partners.subtitle">Collaborating with industry leaders to drive Web3 innovation</p>
+            </div>
+        </div>
+        <div class="partners-track">
+            <!-- First set of partners -->
+            <div class="partner-card"><div class="partner-name">Binance</div></div>
+            <div class="partner-card"><div class="partner-name">Coinbase</div></div>
+            <div class="partner-card"><div class="partner-name">OKX</div></div>
+            <div class="partner-card"><div class="partner-name">Solana</div></div>
+            <div class="partner-card"><div class="partner-name">Polygon</div></div>
+            <div class="partner-card"><div class="partner-name">Chainlink</div></div>
+            <div class="partner-card"><div class="partner-name">Avalanche</div></div>
+            <div class="partner-card"><div class="partner-name">Tether</div></div>
+            <div class="partner-card"><div class="partner-name">Circle</div></div>
+            <div class="partner-card"><div class="partner-name">Paradigm</div></div>
+            <div class="partner-card"><div class="partner-name">a16z</div></div>
+            <div class="partner-card"><div class="partner-name">Sequoia</div></div>
+            <div class="partner-card"><div class="partner-name">BlackRock</div></div>
+            <div class="partner-card"><div class="partner-name">Fidelity</div></div>
+            <div class="partner-card"><div class="partner-name">Goldman Sachs</div></div>
+            <div class="partner-card"><div class="partner-name">AWS</div></div>
+            <div class="partner-card"><div class="partner-name">Google Cloud</div></div>
+            <div class="partner-card"><div class="partner-name">Microsoft Azure</div></div>
+            <div class="partner-card"><div class="partner-name">Alibaba Cloud</div></div>
+            <div class="partner-card"><div class="partner-name">Tencent Cloud</div></div>
+            <div class="partner-card"><div class="partner-name">Cloudflare</div></div>
+            <div class="partner-card"><div class="partner-name">PayPal</div></div>
+            <div class="partner-card"><div class="partner-name">Grayscale</div></div>
+            <div class="partner-card"><div class="partner-name">Bitget</div></div>
+            <div class="partner-card"><div class="partner-name">Fireblocks</div></div>
+            <div class="partner-card"><div class="partner-name">Consensys</div></div>
+            <div class="partner-card"><div class="partner-name">zkSync</div></div>
+            <div class="partner-card"><div class="partner-name">Lido</div></div>
+            <div class="partner-card"><div class="partner-name">Aave</div></div>
+            <div class="partner-card"><div class="partner-name">Sui</div></div>
+            <!-- Duplicate set for seamless loop -->
+            <div class="partner-card"><div class="partner-name">Binance</div></div>
+            <div class="partner-card"><div class="partner-name">Coinbase</div></div>
+            <div class="partner-card"><div class="partner-name">OKX</div></div>
+            <div class="partner-card"><div class="partner-name">Solana</div></div>
+            <div class="partner-card"><div class="partner-name">Polygon</div></div>
+            <div class="partner-card"><div class="partner-name">Chainlink</div></div>
+            <div class="partner-card"><div class="partner-name">Avalanche</div></div>
+            <div class="partner-card"><div class="partner-name">Tether</div></div>
+            <div class="partner-card"><div class="partner-name">Circle</div></div>
+            <div class="partner-card"><div class="partner-name">Paradigm</div></div>
+            <div class="partner-card"><div class="partner-name">a16z</div></div>
+            <div class="partner-card"><div class="partner-name">Sequoia</div></div>
+            <div class="partner-card"><div class="partner-name">BlackRock</div></div>
+            <div class="partner-card"><div class="partner-name">Fidelity</div></div>
+            <div class="partner-card"><div class="partner-name">Goldman Sachs</div></div>
+            <div class="partner-card"><div class="partner-name">AWS</div></div>
+            <div class="partner-card"><div class="partner-name">Google Cloud</div></div>
+            <div class="partner-card"><div class="partner-name">Microsoft Azure</div></div>
+            <div class="partner-card"><div class="partner-name">Alibaba Cloud</div></div>
+            <div class="partner-card"><div class="partner-name">Tencent Cloud</div></div>
+            <div class="partner-card"><div class="partner-name">Cloudflare</div></div>
+            <div class="partner-card"><div class="partner-name">PayPal</div></div>
+            <div class="partner-card"><div class="partner-name">Grayscale</div></div>
+            <div class="partner-card"><div class="partner-name">Bitget</div></div>
+            <div class="partner-card"><div class="partner-name">Fireblocks</div></div>
+            <div class="partner-card"><div class="partner-name">Consensys</div></div>
+            <div class="partner-card"><div class="partner-name">zkSync</div></div>
+            <div class="partner-card"><div class="partner-name">Lido</div></div>
+            <div class="partner-card"><div class="partner-name">Aave</div></div>
+            <div class="partner-card"><div class="partner-name">Sui</div></div>
+        </div>
+    </section>
+
     <!-- Method Section -->
     <section id="method" class="section">
         <div class="container">
@@ -1292,74 +1481,6 @@
     </section>
 
     <!-- Outcomes Section -->
-    <section id="outcomes" class="section">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-tag">SUCCESS STORIES</span>
-                <h2 class="section-title" data-i18n="outcomes.title">Real Projects, Verifiable Results</h2>
-                <p class="section-description" data-i18n="outcomes.description">
-                    We help Web3 builders achieve breakthroughs with professional capabilities, backed by on-chain data
-                </p>
-            </div>
-
-            <div class="cards-grid">
-                <div class="card reveal">
-                    <span class="card-tag">BUILD + CAPITAL</span>
-                    <h3 class="card-title" data-i18n="outcomes.case1.title">DeFi Protocol TVL Growth 300%</h3>
-                    <p class="card-description" data-i18n="outcomes.case1.desc">
-                        Through systematic growth experiments and community operations, achieved TVL from $10M to $40M in 3 months. Assisted with tokenomics design and liquidity incentive programs.
-                    </p>
-                    <div class="feature-list" style="margin-top: 1.5rem;">
-                        <div class="feature-item">
-                            <div class="feature-icon" style="background: var(--gradient-success);">
-                                <i class="fas fa-arrow-up"></i>
-                            </div>
-                            <div class="feature-text" style="color: var(--success);">
-                                <strong data-i18n="outcomes.case1.result">Result:</strong><span data-i18n="outcomes.case1.result_desc"> TVL $10M → $40M, 5x user growth</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card reveal">
-                    <span class="card-tag">INSIGHT + CAPITAL</span>
-                    <h3 class="card-title" data-i18n="outcomes.case2.title">NFT Project Raised $2M Successfully</h3>
-                    <p class="card-description" data-i18n="outcomes.case2.desc">
-                        Completed market research, competitor analysis, pitch deck optimization, and investor connections, successfully closed seed round. Reached out to 12 institutions, secured investment from top-tier VCs.
-                    </p>
-                    <div class="feature-list" style="margin-top: 1.5rem;">
-                        <div class="feature-item">
-                            <div class="feature-icon" style="background: var(--gradient-success);">
-                                <i class="fas fa-dollar-sign"></i>
-                            </div>
-                            <div class="feature-text" style="color: var(--success);">
-                                <strong data-i18n="outcomes.case2.result">Result:</strong><span data-i18n="outcomes.case2.result_desc"> Seed round $2M, valuation $15M</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card reveal">
-                    <span class="card-tag">INSIGHT + BUILD</span>
-                    <h3 class="card-title" data-i18n="outcomes.case3.title">L2 Solution Technical Breakthrough</h3>
-                    <p class="card-description" data-i18n="outcomes.case3.desc">
-                        Deep technical research and prototype validation, helping the team find optimal technical solution. Completed zkEVM feasibility analysis and PoC development.
-                    </p>
-                    <div class="feature-list" style="margin-top: 1.5rem;">
-                        <div class="feature-item">
-                            <div class="feature-icon" style="background: var(--gradient-success);">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <div class="feature-text" style="color: var(--success);">
-                                <strong data-i18n="outcomes.case3.result">Result:</strong><span data-i18n="outcomes.case3.result_desc"> PoC validated successfully, 10x TPS improvement</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- CTA Section -->
     <section id="apply" class="cta-section">
         <div class="cta-content">
@@ -1509,6 +1630,8 @@
                 'membership.host.join.desc': 'Host a trial session first, submit review, continue after mutual confirmation',
                 'membership.host.note.title': 'Note:',
                 'membership.host.note.desc': 'No rigid metrics; consensus on "rhythm and review"',
+                'partners.title': 'Our Trusted Partners',
+                'partners.subtitle': 'Collaborating with industry leaders to drive Web3 innovation',
                 'method.title': 'Three Pillars Empowering Web3',
                 'method.description': 'A systematic methodology providing end-to-end support from insight to implementation for Web3 projects',
                 'method.insight.title': 'Insight',
@@ -1633,6 +1756,8 @@
                 'membership.host.join.desc': '先试主持一次，提交回顾，双方确认后继续',
                 'membership.host.note.title': '说明：',
                 'membership.host.note.desc': '不设硬性指标；以"有节奏、有回顾"为共识',
+                'partners.title': '我们的合作伙伴',
+                'partners.subtitle': '携手行业领军者，共同推动 Web3 创新',
                 'method.title': '三大支柱赋能 Web3',
                 'method.description': '系统化的方法论体系，为 Web3 项目提供从洞察到落地的全流程支持',
                 'method.insight.title': 'Insight 洞察',
@@ -1757,6 +1882,8 @@
                 'membership.host.join.desc': '先試主持一次，提交回顧，雙方確認後繼續',
                 'membership.host.note.title': '說明：',
                 'membership.host.note.desc': '不設硬性指標；以"有節奏、有回顧"為共識',
+                'partners.title': '我們的合作夥伴',
+                'partners.subtitle': '攜手行業領軍者，共同推動 Web3 創新',
                 'method.title': '三大支柱賦能 Web3',
                 'method.description': '系統化的方法論體系，為 Web3 項目提供從洞察到落地的全流程支持',
                 'method.insight.title': 'Insight 洞察',
