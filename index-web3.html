@@ -384,6 +384,41 @@
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.8);
         }
 
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10001;
+        }
+
+        .mobile-menu-toggle span {
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         /* Language Selector */
         .lang-selector {
             position: relative;
@@ -1045,19 +1080,6 @@
         /* Responsive - Enhanced Mobile Optimization */
         @media (max-width: 768px) {
             /* Navigation */
-            .nav-menu {
-                display: none;
-            }
-            
-            /* Keep language selector visible on mobile */
-            .nav-menu .lang-selector {
-                display: block;
-                position: fixed;
-                top: 1.2rem;
-                right: 1rem;
-                z-index: 10001;
-            }
-
             .navbar {
                 padding: 1rem 1.5rem;
             }
@@ -1069,6 +1091,79 @@
             .logo-icon {
                 height: 38px;
                 width: 38px;
+            }
+
+            /* Show mobile menu toggle */
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            /* Mobile Navigation Menu */
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.98);
+                backdrop-filter: blur(20px);
+                border-left: 1px solid rgba(0, 240, 255, 0.2);
+                padding: 5rem 2rem 2rem;
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: stretch;
+                transition: right 0.3s ease;
+                z-index: 10000;
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 1rem 1.5rem;
+                font-size: 1.1rem;
+                text-align: center;
+                background: rgba(0, 240, 255, 0.05);
+                border: 1px solid rgba(0, 240, 255, 0.2);
+                border-radius: 8px;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu a:hover {
+                background: rgba(0, 240, 255, 0.15);
+                border-color: var(--primary);
+            }
+
+            .nav-menu a::before {
+                display: none;
+            }
+
+            .nav-cta {
+                width: 100%;
+                text-align: center;
+                padding: 1rem 1.5rem !important;
+            }
+
+            /* Language Selector in Mobile Menu */
+            .lang-selector {
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .lang-selector select {
+                width: 100%;
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                text-align: center;
+                background: rgba(0, 240, 255, 0.1);
+                border: 1px solid rgba(0, 240, 255, 0.3);
             }
 
             /* Hero Section */
@@ -1285,14 +1380,6 @@
                 height: 80px;
             }
 
-            /* Language Selector - Mobile optimized */
-            .nav-menu .lang-selector select {
-                padding: 0.5rem 0.8rem;
-                font-size: 0.8rem;
-                min-width: 100px;
-                background: rgba(0, 0, 0, 0.8);
-                backdrop-filter: blur(10px);
-            }
 
             /* About Section Specific */
             #about {
@@ -1446,7 +1533,15 @@
                 <img src="UP9_logo_transparent_2048.png" alt="UP9 Icon" class="logo-icon">
                 <span class="logo-text">UP9</span>
             </a>
-            <ul class="nav-menu">
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="#about" data-i18n="nav.about">ABOUT</a></li>
                 <li><a href="#membership" data-i18n="nav.membership">MEMBERSHIP</a></li>
                 <li><a href="#partners" data-i18n="nav.partners">PARTNER</a></li>
@@ -2380,6 +2475,32 @@
             const saved = localStorage.getItem('preferredLanguage') || 'en';
             document.getElementById('languageSelect').value = saved;
             changeLanguage(saved);
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                mobileMenuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
         });
 
         // Navbar scroll effect
