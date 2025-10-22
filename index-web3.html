@@ -1042,14 +1042,19 @@
             color: var(--primary);
         }
 
-        /* Responsive */
+        /* Responsive - Enhanced Mobile Optimization */
         @media (max-width: 768px) {
+            /* Navigation */
             .nav-menu {
                 display: none;
             }
 
-            .hero-logo-text {
-                font-size: 4rem;
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
             }
 
             .logo-icon {
@@ -1057,33 +1062,302 @@
                 width: 38px;
             }
 
+            /* Hero Section */
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+                min-height: 70vh;
+            }
+
+            .hero-logo-text {
+                font-size: 3.5rem;
+                margin-bottom: 1.5rem;
+            }
+
             .hero h1 {
-                font-size: 3rem;
+                font-size: 2rem;
+                line-height: 1.3;
+                margin-bottom: 1rem;
             }
 
             .hero .subtitle {
-                font-size: 1.3rem;
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-tag {
+                font-size: 0.85rem;
+                padding: 0.4rem 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            /* Buttons */
+            .btn {
+                padding: 0.85rem 1.8rem;
+                font-size: 0.9rem;
+                min-width: 140px;
+            }
+
+            /* Sections */
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0 1rem;
             }
 
             .section-title {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                line-height: 1.2;
+            }
+
+            .section-description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .section-tag {
+                font-size: 0.75rem;
+                padding: 0.35rem 0.9rem;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
+            }
+
+            /* Cards */
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .card {
+                padding: 2rem 1.5rem;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .card-description {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+
+            /* Stats */
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .stat-value {
                 font-size: 2.5rem;
             }
 
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
+            .stat-label {
+                font-size: 0.9rem;
             }
 
-            .cards-grid {
-                grid-template-columns: 1fr;
+            /* Feature List */
+            .feature-list {
+                gap: 1rem;
+            }
+
+            .feature-item {
+                font-size: 0.9rem;
+            }
+
+            .feature-icon {
+                min-width: 20px;
+                height: 20px;
+                font-size: 0.7rem;
+            }
+
+            /* Partners Carousel */
+            .partners-carousel {
+                padding: 3rem 0;
+            }
+
+            .partners-carousel-title {
+                font-size: 1.8rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .partners-carousel-subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .partner-card {
+                width: 140px;
+                height: 75px;
+                margin: 0 0.8rem;
+                padding: 0.8rem;
+            }
+
+            .partner-logo {
+                max-width: 50px;
+                max-height: 30px;
+            }
+
+            .partner-name {
+                font-size: 0.7rem;
+                margin-top: 0.4rem;
+            }
+
+            /* CTA Section */
+            .cta-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .cta-section p {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            /* Telegram Section */
+            .cta-content > div:last-child {
+                padding: 2rem 0 !important;
+            }
+
+            .cta-content h3 {
+                font-size: 1.3rem !important;
+            }
+
+            .cta-content > div:last-child > div:first-child {
+                flex-direction: column !important;
+                gap: 1.5rem !important;
+            }
+
+            .cta-content > div:last-child > div:first-child > div:first-child > div {
+                width: 180px !important;
+                height: 180px !important;
+            }
+
+            .cta-content > div:last-child > div:first-child > div:last-child {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 3rem 1.5rem 2rem;
             }
 
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2.5rem;
+            }
+
+            .footer-logo {
+                font-size: 2rem;
+            }
+
+            .footer-description {
+                font-size: 0.9rem;
+            }
+
+            /* Section Transition Logo - Smaller on mobile */
+            .section-transition-logo img {
+                width: 80px;
+                height: 80px;
+            }
+
+            /* Language Selector */
+            .lang-selector select {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.85rem;
+            }
+
+            /* About Section Specific */
+            #about {
+                padding-top: 6rem !important;
+            }
+
+            #about .section-title {
+                font-size: 2.2rem !important;
+            }
+
+            /* Membership Section Specific */
+            #membership {
+                padding-top: 6rem !important;
+            }
+
+            /* Partners Section Specific */
+            #partners {
+                padding-top: 6rem !important;
+            }
+        }
+
+        /* Extra Small Devices (phones in portrait) */
+        @media (max-width: 480px) {
+            .hero-logo-text {
+                font-size: 2.8rem;
+            }
+
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 0.9rem 1.5rem;
+            }
+
+            .partner-card {
+                width: 120px;
+                height: 65px;
+            }
+
+            .partner-logo {
+                max-width: 40px;
+                max-height: 25px;
             }
 
             .cta-section h2 {
-                font-size: 2.5rem;
+                font-size: 1.75rem;
+            }
+
+            .card {
+                padding: 1.5rem 1.25rem;
+            }
+        }
+
+        /* Landscape Optimization for Mobile */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: 6rem 2rem 3rem;
+            }
+
+            .section {
+                padding: 3rem 1.5rem;
             }
         }
 
