@@ -1048,6 +1048,15 @@
             .nav-menu {
                 display: none;
             }
+            
+            /* Keep language selector visible on mobile */
+            .nav-menu .lang-selector {
+                display: block;
+                position: fixed;
+                top: 1.2rem;
+                right: 1rem;
+                z-index: 10001;
+            }
 
             .navbar {
                 padding: 1rem 1.5rem;
@@ -1276,10 +1285,13 @@
                 height: 80px;
             }
 
-            /* Language Selector */
-            .lang-selector select {
-                padding: 0.4rem 0.6rem;
-                font-size: 0.85rem;
+            /* Language Selector - Mobile optimized */
+            .nav-menu .lang-selector select {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+                min-width: 100px;
+                background: rgba(0, 0, 0, 0.8);
+                backdrop-filter: blur(10px);
             }
 
             /* About Section Specific */
