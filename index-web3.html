@@ -2025,11 +2025,23 @@
             
             <!-- Join Our Community Section -->
             <div id="community" style="margin-top: 4rem; padding-top: 4rem; border-top: 1px solid rgba(255, 255, 255, 0.1); scroll-margin-top: 100px;">
-                <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" data-i18n="social.title">Join Our Community</h3>
-                <p style="font-size: 1rem; opacity: 0.8; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;" data-i18n="social.description">Connect with us across all platforms, join discussions, and stay updated</p>
+                <h3 style="font-size: 2rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center;" data-i18n="social.title">Join Our Community</h3>
+                <p style="font-size: 1rem; opacity: 0.8; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center;" data-i18n="social.description">Connect with us across all platforms, join discussions, and stay updated</p>
                 
-                <!-- Social Media Grid -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
+                <!-- Social Media Grid - 3 columns on desktop, 2 on tablet, 1 on mobile -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1000px; margin: 0 auto;">
+                <style>
+                @media (max-width: 900px) {
+                    #community > div {
+                        grid-template-columns: repeat(2, 1fr) !important;
+                    }
+                }
+                @media (max-width: 600px) {
+                    #community > div {
+                        grid-template-columns: 1fr !important;
+                    }
+                }
+                </style>
                     <!-- Telegram Channel -->
                     <a href="https://t.me/UP9_Global" target="_blank" style="display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: rgba(0, 240, 255, 0.1); border-radius: 0.75rem; transition: all 0.3s ease; text-decoration: none; border: 1px solid rgba(0, 240, 255, 0.3);" onmouseover="this.style.background='rgba(0, 240, 255, 0.2)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(0, 240, 255, 0.1)'; this.style.transform='translateY(0)'">
                         <i class="fab fa-telegram" style="font-size: 2rem; color: var(--primary);"></i>
