@@ -2022,82 +2022,144 @@
                 <a href="#" class="btn btn-primary" data-i18n="cta.apply">APPLY NOW</a>
                 <a href="#contact" class="btn btn-secondary" data-i18n="cta.contact">CONTACT US</a>
             </div>
-            
+
             <!-- Join Our Community Section -->
             <div id="community" style="margin-top: 4rem; padding-top: 4rem; border-top: 1px solid rgba(255, 255, 255, 0.1); scroll-margin-top: 100px;">
                 <h3 style="font-size: 2rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center;" data-i18n="social.title">Join Our Community</h3>
                 <p style="font-size: 1rem; opacity: 0.8; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center;" data-i18n="social.description">Connect with us across all platforms, join discussions, and stay updated</p>
                 
                 <!-- Social Media Grid - 3 columns on desktop, 2 on tablet, 1 on mobile -->
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1000px; margin: 0 auto;">
                 <style>
+                /* 统一社交媒体卡片样式 - 确保所有卡片大小一致 */
+                .social-card {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    padding: 1.25rem 1.5rem;
+                    border-radius: 0.75rem;
+                    transition: all 0.3s ease;
+                    text-decoration: none;
+                    min-height: 88px; /* 固定最小高度确保一致性 */
+                    box-sizing: border-box;
+                }
+                
+                .social-card-icon {
+                    font-size: 2rem;
+                    flex-shrink: 0; /* 防止图标被压缩 */
+                    width: 2rem; /* 固定图标宽度 */
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                
+                .social-card-content {
+                    text-align: left;
+                    flex: 1;
+                    min-width: 0; /* 允许文本在需要时截断 */
+                }
+                
+                .social-card-title {
+                    font-weight: 600;
+                    font-size: 1rem;
+                    line-height: 1.4;
+                    margin-bottom: 0.25rem;
+                    white-space: nowrap; /* 标题不换行 */
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                
+                .social-card-desc {
+                    font-size: 0.85rem;
+                    opacity: 0.7;
+                    line-height: 1.4;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2; /* 最多两行 */
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+                
+                .social-card-badge {
+                    position: absolute;
+                    top: 0.5rem;
+                    right: 0.5rem;
+                    padding: 0.25rem 0.5rem;
+                    border-radius: 0.25rem;
+                    font-size: 0.7rem;
+                    font-weight: 600;
+                    white-space: nowrap;
+                }
+                
                 @media (max-width: 900px) {
-                    #community > div {
+                    #community > div:not(style) {
                         grid-template-columns: repeat(2, 1fr) !important;
                     }
                 }
                 @media (max-width: 600px) {
-                    #community > div {
+                    #community > div:not(style) {
                         grid-template-columns: 1fr !important;
+                    }
+                    .social-card {
+                        min-height: 80px; /* 移动端稍微减小高度 */
                     }
                 }
                 </style>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1000px; margin: 0 auto;">
                     <!-- Telegram Channel -->
-                    <a href="https://t.me/UP9_Global" target="_blank" style="display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: rgba(0, 240, 255, 0.1); border-radius: 0.75rem; transition: all 0.3s ease; text-decoration: none; border: 1px solid rgba(0, 240, 255, 0.3);" onmouseover="this.style.background='rgba(0, 240, 255, 0.2)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(0, 240, 255, 0.1)'; this.style.transform='translateY(0)'">
-                        <i class="fab fa-telegram" style="font-size: 2rem; color: var(--primary);"></i>
-                        <div style="text-align: left;">
-                            <div style="font-weight: 600; font-size: 1rem;" data-i18n="social.telegram_channel">Telegram Channel</div>
-                            <div style="font-size: 0.85rem; opacity: 0.7;" data-i18n="social.telegram_channel_desc">Latest updates & announcements</div>
+                    <a href="https://t.me/UP9_Global" target="_blank" class="social-card" style="background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3);" onmouseover="this.style.background='rgba(0, 240, 255, 0.2)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(0, 240, 255, 0.1)'; this.style.transform='translateY(0)'">
+                        <i class="fab fa-telegram social-card-icon" style="color: var(--primary);"></i>
+                        <div class="social-card-content">
+                            <div class="social-card-title" data-i18n="social.telegram_channel">Telegram Channel</div>
+                            <div class="social-card-desc" data-i18n="social.telegram_channel_desc">Latest updates & announcements</div>
                         </div>
                     </a>
                     
                     <!-- Telegram Group -->
-                    <a href="https://t.me/UP9_Official" target="_blank" style="display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: rgba(170, 47, 255, 0.1); border-radius: 0.75rem; transition: all 0.3s ease; text-decoration: none; border: 1px solid rgba(170, 47, 255, 0.3);" onmouseover="this.style.background='rgba(170, 47, 255, 0.2)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(170, 47, 255, 0.1)'; this.style.transform='translateY(0)'">
-                        <i class="fab fa-telegram" style="font-size: 2rem; color: var(--secondary);"></i>
-                        <div style="text-align: left;">
-                            <div style="font-weight: 600; font-size: 1rem;" data-i18n="social.telegram_group">Telegram Group</div>
-                            <div style="font-size: 0.85rem; opacity: 0.7;" data-i18n="social.telegram_group_desc">Community discussions & support</div>
+                    <a href="https://t.me/UP9_Official" target="_blank" class="social-card" style="background: rgba(170, 47, 255, 0.1); border: 1px solid rgba(170, 47, 255, 0.3);" onmouseover="this.style.background='rgba(170, 47, 255, 0.2)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(170, 47, 255, 0.1)'; this.style.transform='translateY(0)'">
+                        <i class="fab fa-telegram social-card-icon" style="color: var(--secondary);"></i>
+                        <div class="social-card-content">
+                            <div class="social-card-title" data-i18n="social.telegram_group">Telegram Group</div>
+                            <div class="social-card-desc" data-i18n="social.telegram_group_desc">Community discussions & support</div>
                         </div>
                     </a>
                     
                     <!-- X / Twitter -->
-                    <a href="https://x.com/UP9_Global" target="_blank" style="display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: rgba(29, 155, 240, 0.1); border-radius: 0.75rem; transition: all 0.3s ease; text-decoration: none; border: 1px solid rgba(29, 155, 240, 0.3);" onmouseover="this.style.background='rgba(29, 155, 240, 0.2)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(29, 155, 240, 0.1)'; this.style.transform='translateY(0)'">
-                        <i class="fab fa-twitter" style="font-size: 2rem; color: #1d9bf0;"></i>
-                        <div style="text-align: left;">
-                            <div style="font-weight: 600; font-size: 1rem;" data-i18n="social.twitter">X (Twitter)</div>
-                            <div style="font-size: 0.85rem; opacity: 0.7;" data-i18n="social.twitter_desc">Follow us for quick updates</div>
+                    <a href="https://x.com/UP9_Global" target="_blank" class="social-card" style="background: rgba(29, 155, 240, 0.1); border: 1px solid rgba(29, 155, 240, 0.3);" onmouseover="this.style.background='rgba(29, 155, 240, 0.2)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(29, 155, 240, 0.1)'; this.style.transform='translateY(0)'">
+                        <i class="fab fa-twitter social-card-icon" style="color: #1d9bf0;"></i>
+                        <div class="social-card-content">
+                            <div class="social-card-title" data-i18n="social.twitter">X (Twitter)</div>
+                            <div class="social-card-desc" data-i18n="social.twitter_desc">Follow us for quick updates</div>
                         </div>
                     </a>
                     
                     <!-- Discord -->
-                    <a href="https://discord.gg/up9" target="_blank" style="display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: rgba(88, 101, 242, 0.1); border-radius: 0.75rem; transition: all 0.3s ease; text-decoration: none; border: 1px solid rgba(88, 101, 242, 0.3);" onmouseover="this.style.background='rgba(88, 101, 242, 0.2)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(88, 101, 242, 0.1)'; this.style.transform='translateY(0)'">
-                        <i class="fab fa-discord" style="font-size: 2rem; color: #5865f2;"></i>
-                        <div style="text-align: left;">
-                            <div style="font-weight: 600; font-size: 1rem;" data-i18n="social.discord">Discord</div>
-                            <div style="font-size: 0.85rem; opacity: 0.7;" data-i18n="social.discord_desc">Join our community server</div>
+                    <a href="https://discord.gg/up9" target="_blank" class="social-card" style="background: rgba(88, 101, 242, 0.1); border: 1px solid rgba(88, 101, 242, 0.3);" onmouseover="this.style.background='rgba(88, 101, 242, 0.2)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(88, 101, 242, 0.1)'; this.style.transform='translateY(0)'">
+                        <i class="fab fa-discord social-card-icon" style="color: #5865f2;"></i>
+                        <div class="social-card-content">
+                            <div class="social-card-title" data-i18n="social.discord">Discord</div>
+                            <div class="social-card-desc" data-i18n="social.discord_desc">Join our community server</div>
                         </div>
                     </a>
                     
                     <!-- YouTube - Placeholder for future link -->
-                    <a href="#community" onclick="alert('YouTube channel coming soon! 即将推出！'); return false;" style="display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: rgba(255, 0, 0, 0.1); border-radius: 0.75rem; border: 1px solid rgba(255, 0, 0, 0.3); opacity: 0.6; position: relative; cursor: pointer; text-decoration: none;">
-                        <i class="fab fa-youtube" style="font-size: 2rem; color: #ff0000;"></i>
-                        <div style="text-align: left;">
-                            <div style="font-weight: 600; font-size: 1rem;" data-i18n="social.youtube">YouTube</div>
-                            <div style="font-size: 0.85rem; opacity: 0.7;" data-i18n="social.youtube_desc">Coming Soon</div>
+                    <a href="#community" onclick="alert('YouTube channel coming soon! 即将推出！'); return false;" class="social-card" style="background: rgba(255, 0, 0, 0.1); border: 1px solid rgba(255, 0, 0, 0.3); opacity: 0.6; position: relative; cursor: pointer;">
+                        <i class="fab fa-youtube social-card-icon" style="color: #ff0000;"></i>
+                        <div class="social-card-content">
+                            <div class="social-card-title" data-i18n="social.youtube">YouTube</div>
+                            <div class="social-card-desc" data-i18n="social.youtube_desc">Coming Soon</div>
                         </div>
-                        <div style="position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(255, 0, 0, 0.3); padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 600;" data-i18n="social.coming_soon">SOON</div>
+                        <div class="social-card-badge" style="background: rgba(255, 0, 0, 0.3);" data-i18n="social.coming_soon">SOON</div>
                     </a>
                     
                     <!-- TikTok - Placeholder for future link -->
-                    <a href="#community" onclick="alert('TikTok account coming soon! 即将推出！'); return false;" style="display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: rgba(255, 0, 80, 0.1); border-radius: 0.75rem; border: 1px solid rgba(255, 0, 80, 0.3); opacity: 0.6; position: relative; cursor: pointer; text-decoration: none;">
-                        <i class="fab fa-tiktok" style="font-size: 2rem; color: #ff0050;"></i>
-                        <div style="text-align: left;">
-                            <div style="font-weight: 600; font-size: 1rem;" data-i18n="social.tiktok">TikTok</div>
-                            <div style="font-size: 0.85rem; opacity: 0.7;" data-i18n="social.tiktok_desc">Coming Soon</div>
+                    <a href="#community" onclick="alert('TikTok account coming soon! 即将推出！'); return false;" class="social-card" style="background: rgba(255, 0, 80, 0.1); border: 1px solid rgba(255, 0, 80, 0.3); opacity: 0.6; position: relative; cursor: pointer;">
+                        <i class="fab fa-tiktok social-card-icon" style="color: #ff0050;"></i>
+                        <div class="social-card-content">
+                            <div class="social-card-title" data-i18n="social.tiktok">TikTok</div>
+                            <div class="social-card-desc" data-i18n="social.tiktok_desc">Coming Soon</div>
                         </div>
-                        <div style="position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(255, 0, 80, 0.3); padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 600;" data-i18n="social.coming_soon">SOON</div>
+                        <div class="social-card-badge" style="background: rgba(255, 0, 80, 0.3);" data-i18n="social.coming_soon">SOON</div>
                     </a>
-                </div>
+                        </div>
             </div>
         </div>
     </section>
@@ -2562,8 +2624,8 @@
         // Load saved language preference
         window.addEventListener('DOMContentLoaded', () => {
             const saved = localStorage.getItem('preferredLanguage') || 'en';
-            document.getElementById('languageSelect').value = saved;
-            changeLanguage(saved);
+                document.getElementById('languageSelect').value = saved;
+                changeLanguage(saved);
         });
 
         // Mobile Menu Toggle
