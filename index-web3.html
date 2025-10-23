@@ -1545,7 +1545,7 @@
                 <li><a href="#about" data-i18n="nav.about">ABOUT</a></li>
                 <li><a href="#membership" data-i18n="nav.membership">MEMBERSHIP</a></li>
                 <li><a href="#partners" data-i18n="nav.partners">PARTNER</a></li>
-                <li><a href="https://t.me/UP9_Official" target="_blank" class="nav-cta" data-i18n="nav.join">JOIN US</a></li>
+                <li><a href="#community" class="nav-cta" data-i18n="nav.join">JOIN US</a></li>
                 <li class="lang-selector">
                     <select id="languageSelect" onchange="changeLanguage(this.value)">
                         <option value="en">EN</option>
@@ -1585,7 +1585,7 @@
                     UP9 is a community built around "Learn × Connect × Build". We cut noise, favor methods and boundaries, and ship together—no promise of returns.
                 </p>
                 <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="https://t.me/UP9_Official" target="_blank" class="btn btn-primary" data-i18n="about.hero.join">JOIN US</a>
+                    <a href="#community" class="btn btn-primary" data-i18n="about.hero.join">JOIN US</a>
                     <a href="#membership" class="btn btn-secondary" data-i18n="about.hero.how">HOW WE WORK</a>
                 </div>
             </div>
@@ -2023,10 +2023,10 @@
                 <a href="#contact" class="btn btn-secondary" data-i18n="cta.contact">CONTACT US</a>
             </div>
             
-            <!-- Social Media Hub Section -->
-            <div style="margin-top: 4rem; padding-top: 4rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" data-i18n="social.title">Connect With Us</h3>
-                <p style="font-size: 1rem; opacity: 0.8; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;" data-i18n="social.description">Follow us across all platforms for updates, discussions, and community engagement</p>
+            <!-- Join Our Community Section -->
+            <div id="community" style="margin-top: 4rem; padding-top: 4rem; border-top: 1px solid rgba(255, 255, 255, 0.1); scroll-margin-top: 100px;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" data-i18n="social.title">Join Our Community</h3>
+                <p style="font-size: 1rem; opacity: 0.8; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;" data-i18n="social.description">Connect with us across all platforms, join discussions, and stay updated</p>
                 
                 <!-- Social Media Grid -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
@@ -2066,34 +2066,25 @@
                         </div>
                     </a>
                     
-                    <!-- GitHub -->
-                    <a href="https://github.com/up9" target="_blank" style="display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: rgba(240, 240, 240, 0.1); border-radius: 0.75rem; transition: all 0.3s ease; text-decoration: none; border: 1px solid rgba(240, 240, 240, 0.3);" onmouseover="this.style.background='rgba(240, 240, 240, 0.2)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(240, 240, 240, 0.1)'; this.style.transform='translateY(0)'">
-                        <i class="fab fa-github" style="font-size: 2rem; color: #f0f0f0;"></i>
-                        <div style="text-align: left;">
-                            <div style="font-weight: 600; font-size: 1rem;" data-i18n="social.github">GitHub</div>
-                            <div style="font-size: 0.85rem; opacity: 0.7;" data-i18n="social.github_desc">Explore our open-source projects</div>
-                        </div>
-                    </a>
-                    
-                    <!-- YouTube - Coming Soon -->
-                    <div style="display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: rgba(255, 0, 0, 0.1); border-radius: 0.75rem; border: 1px solid rgba(255, 0, 0, 0.3); opacity: 0.6; position: relative;">
+                    <!-- YouTube - Placeholder for future link -->
+                    <a href="#community" onclick="alert('YouTube channel coming soon! 即将推出！'); return false;" style="display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: rgba(255, 0, 0, 0.1); border-radius: 0.75rem; border: 1px solid rgba(255, 0, 0, 0.3); opacity: 0.6; position: relative; cursor: pointer; text-decoration: none;">
                         <i class="fab fa-youtube" style="font-size: 2rem; color: #ff0000;"></i>
                         <div style="text-align: left;">
                             <div style="font-weight: 600; font-size: 1rem;" data-i18n="social.youtube">YouTube</div>
                             <div style="font-size: 0.85rem; opacity: 0.7;" data-i18n="social.youtube_desc">Coming Soon</div>
                         </div>
                         <div style="position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(255, 0, 0, 0.3); padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 600;" data-i18n="social.coming_soon">SOON</div>
-                    </div>
+                    </a>
                     
-                    <!-- TikTok - Coming Soon -->
-                    <div style="display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: rgba(255, 0, 80, 0.1); border-radius: 0.75rem; border: 1px solid rgba(255, 0, 80, 0.3); opacity: 0.6; position: relative;">
+                    <!-- TikTok - Placeholder for future link -->
+                    <a href="#community" onclick="alert('TikTok account coming soon! 即将推出！'); return false;" style="display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: rgba(255, 0, 80, 0.1); border-radius: 0.75rem; border: 1px solid rgba(255, 0, 80, 0.3); opacity: 0.6; position: relative; cursor: pointer; text-decoration: none;">
                         <i class="fab fa-tiktok" style="font-size: 2rem; color: #ff0050;"></i>
                         <div style="text-align: left;">
                             <div style="font-weight: 600; font-size: 1rem;" data-i18n="social.tiktok">TikTok</div>
                             <div style="font-size: 0.85rem; opacity: 0.7;" data-i18n="social.tiktok_desc">Coming Soon</div>
                         </div>
                         <div style="position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(255, 0, 80, 0.3); padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 600;" data-i18n="social.coming_soon">SOON</div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -2112,14 +2103,20 @@
                         <a href="https://x.com/UP9_Global" class="social-link" target="_blank" title="Follow us on X">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="https://t.me/UP9_Global" class="social-link" target="_blank" title="Telegram Channel">
+                        <a href="https://t.me/UP9_Global" class="social-link" target="_blank" title="Telegram Channel - 频道">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://t.me/UP9_Official" class="social-link" target="_blank" title="Telegram Group - 社群">
                             <i class="fab fa-telegram"></i>
                         </a>
                         <a href="https://discord.gg/up9" class="social-link" target="_blank" title="Join Discord">
                             <i class="fab fa-discord"></i>
                         </a>
-                        <a href="https://github.com/up9" class="social-link" target="_blank" title="GitHub">
-                            <i class="fab fa-github"></i>
+                        <a href="https://www.youtube.com/@UP9_Global" class="social-link" target="_blank" title="YouTube (Coming Soon)" style="opacity: 0.5;">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@up9_global" class="social-link" target="_blank" title="TikTok (Coming Soon)" style="opacity: 0.5;">
+                            <i class="fab fa-tiktok"></i>
                         </a>
                     </div>
                 </div>
@@ -2165,6 +2162,19 @@
     </footer>
 
     <script>
+        // ===== 社交媒体链接配置 | Social Media Links Configuration =====
+        // 在此处更新社交媒体链接，会自动应用到整个网站
+        // Update social media links here, they will be applied across the entire website
+        const SOCIAL_MEDIA_LINKS = {
+            telegram_channel: 'https://t.me/UP9_Global',           // TG频道 | TG Channel
+            telegram_group: 'https://t.me/UP9_Official',           // TG社群 | TG Group
+            twitter: 'https://x.com/UP9_Global',                   // X/Twitter
+            discord: 'https://discord.gg/up9',                     // Discord
+            youtube: 'https://www.youtube.com/@UP9_Global',        // YouTube (请在准备好后更新 | Update when ready)
+            tiktok: 'https://www.tiktok.com/@up9_global',          // TikTok (请在准备好后更新 | Update when ready)
+            // 添加新平台时，在此处添加链接 | Add new platforms here
+        };
+        
         // Randomly display 50% of partners
         document.addEventListener('DOMContentLoaded', function() {
             const partnersTrack = document.querySelector('.partners-track');
@@ -2288,8 +2298,8 @@
                 'cta.description': 'Join UP9 and build groundbreaking projects with 50+ talented Web3 builders in the decentralized future',
                 'cta.apply': 'APPLY NOW',
                 'cta.contact': 'CONTACT US',
-                'social.title': 'Connect With Us',
-                'social.description': 'Follow us across all platforms for updates, discussions, and community engagement',
+                'social.title': 'Join Our Community',
+                'social.description': 'Connect with us across all platforms, join discussions, and stay updated',
                 'social.telegram_channel': 'Telegram Channel',
                 'social.telegram_channel_desc': 'Latest updates & announcements',
                 'social.telegram_group': 'Telegram Group',
@@ -2391,8 +2401,8 @@
                 'cta.description': '加入 UP9，与 50+ 优秀的 Web3 建设者一起，在去中心化的未来中创造突破性项目',
                 'cta.apply': '立即申请',
                 'cta.contact': '联系我们',
-                'social.title': '关注我们',
-                'social.description': '在各大平台关注我们，获取最新动态、参与讨论和社区互动',
+                'social.title': '加入我们的社区',
+                'social.description': '在各大平台与我们连接，参与讨论，获取最新动态',
                 'social.telegram_channel': 'Telegram 频道',
                 'social.telegram_channel_desc': '最新动态与公告',
                 'social.telegram_group': 'Telegram 社群',
@@ -2494,8 +2504,8 @@
                 'cta.description': '加入 UP9，與 50+ 優秀的 Web3 建設者一起，在去中心化的未來中創造突破性項目',
                 'cta.apply': '立即申請',
                 'cta.contact': '聯繫我們',
-                'social.title': '關注我們',
-                'social.description': '在各大平台關注我們，獲取最新動態、參與討論和社區互動',
+                'social.title': '加入我們的社區',
+                'social.description': '在各大平台與我們連接，參與討論，獲取最新動態',
                 'social.telegram_channel': 'Telegram 頻道',
                 'social.telegram_channel_desc': '最新動態與公告',
                 'social.telegram_group': 'Telegram 社群',
